@@ -1,4 +1,9 @@
-# Project Name #
+# BugNet #
+## Team ##
+>Project Manager/Developer: Emmanuel Ruiz <br>
+Developer: Aldair Garcia Angon <br>
+Developer: Aaron Minaya
+---
 ## Heading ##
 > BugNet is an application that allows project members to share tasks and bugs that need to be completed or fixed. Users are allowed to create a post with a specific description and image of the bug so they are later allowed to be resolved by other project members.
 --- 
@@ -25,3 +30,16 @@
 ---
 ## Wireframes ##
 > ![wireframes](wireframes.jpg)
+---
+## Contacts ##
+>Project Manager/Developer: Emmanuel Ruiz <br>
+LinkedIn: [Emmanuel Ruiz](https://www.linkedin.com/in/emmanuel-ruiz/) <br>
+Github: [EmmanuelR21](https://github.com/EmmanuelR21) <br>
+<br>
+Developer: Aldair Garcia Angon <br>
+LinkedIn: [Aldair Garcia Angon](https://www.linkedin.com/in/aldair-garcia-angon/) <br>
+Github: [AGarciaNY](https://github.com/AGarciaNY) <br>
+<br>
+Developer: Aaron Minaya <br>
+LinkedIn: [Aaron Minaya](https://www.linkedin.com/in/aaron-minaya/) <br>
+Github: [aaronminaya0](https://github.com/aaronminaya0)
