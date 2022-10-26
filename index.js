@@ -1,3 +1,9 @@
+// check if the user is logedin
+let logedinusername = localStorage.getItem("logedinusername");
+let logedinpassword = localStorage.getItem("logedinpassword");
+let logedin = localStorage.getItem("logedin");
+console.log(logedinusername, logedinpassword, logedin)
+
 let getLogIN = document.getElementById("get-login")
 let getSignUp = document.getElementById("get-sign-up")
 
@@ -22,19 +28,24 @@ getSignUp.addEventListener("click", () => {
 })
 
 // submit credentials
-
 logInForm.addEventListener("submit", (e) => { 
     e.preventDefault()
-    console.log(logInForm[0].value)
-    console.log(logInForm[1].value)
+    localStorage.setItem("logedinusername", signUpForm[0].value);
+    localStorage.setItem("logedinpassword", signUpForm[1].value);
+    localStorage.setItem("logedin", true);
 })
+
 
 // submit signUp form
 signUpForm.addEventListener("submit", (e) => {
     e.preventDefault()
-    console.log(signUpForm[0].value)
-    console.log(signUpForm[1].value)
-    console.log(signUpForm[2].value)
+    if (signUpForm[1].value === signUpForm[2].value) {
+        localStorage.setItem("logedinusername", signUpForm[0].value);
+        localStorage.setItem("logedinpassword", signUpForm[1].value);
+        localStorage.setItem("logedin", true);
+    } else { 
+        
+    }
 })
 
 
