@@ -4,8 +4,8 @@
  */
 exports.up = function (knex) {
     return knex.schema.createTable('users_projects', table => {
-        table.number('user_id');
-        table.number('project_id');
+        table.integer('user_id');
+        table.integer('project_id');
     })
 };
 
