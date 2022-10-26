@@ -1,0 +1,27 @@
+*{
+    margin: 0px;
+}
+nav{
+    background-color: blue;
+    height: 100px;
+}
+
+#forms{
+    background-color: red;
+    max-width: 400px;
+    margin: 0 auto;
+}
+#login-or-sign-up{
+    display: flex;
+}
+#get-login{
+    border-right: 2px solid black;
+    padding: 5px;
+}
+#get-sign-up{
+    border-bottom: 2px solid black;
+    padding: 5px;
+}
+#sign-up-form{
+    display: none;
+}
