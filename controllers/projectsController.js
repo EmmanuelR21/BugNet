@@ -1,9 +1,10 @@
 const Project = require('../models/projectsModel.js');
 
 const grabAllProjects = async (request, response) => {
+    response.status(200)
     const userid = request.params.user_id
     const projects = await Project.grabAllProjectsOfUserFromDb(userid);
-    console.log(projects.rows);
+    response.send(projects.rows)
 }
 
 const grabProjectIssues = async (requset, response) => {
