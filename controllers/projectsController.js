@@ -7,11 +7,4 @@ const grabAllProjects = async (request, response) => {
     response.send(projects.rows)
 }
 
-const grabProjectIssues = async (requset, response) => {
-    const projectName = requset.params.name
-    const ID = await Project.grabIdOfProjectFromDb(projectName)
-    const issues = await Project.grabAllIssuesFromProjectFromDb(ID)
-    console.log(issues.rows)
-}
-
-module.exports = {grabAllProjects, grabProjectIssues}
+module.exports = grabAllProjects
