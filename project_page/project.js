@@ -1,6 +1,6 @@
 // Document variables
 const mySidebar = document.getElementById("mySidebar")
-const main =  document.getElementById("main")
+const main = document.getElementById("main")
 const closeSideBar = document.querySelector('.closebtn')
 const openSideBar = document.querySelector('.openbtn')
 const querrybtn = document.querySelector('.querrybtn')
@@ -21,6 +21,12 @@ function openNav() {
     main.style.marginLeft = "250px";
 }
 
-function pullProjects(){
-    
+async function pullProjects() {
+    console.log('hi')
+    const response = await fetch(`http://localhost:5432/projects/3`)
+    const json = await response.json()
+    console.log(json)
+    const thingy = document.createElement('div')
+    thingy.innerText = json[0].name
+    main.appendChild(thingy)
 }
