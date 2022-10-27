@@ -15,7 +15,7 @@ console.log(projectsController)
 
 app.get('/projects/:user_id', projectsController.grabAllProjects)
 
-// app.get('/bugs/:name', bugController.grabBugs)
+app.get('/bugs/projectName', bugController.grabBugs)
 
 // app.get('/bugs/:name', bugController.grabBugInfo)
 

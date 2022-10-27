@@ -23,10 +23,10 @@ function openNav() {
 
 async function pullBugs() {
     console.log('hi')
-    const response = await fetch(`http://localhost:5432/bugs/${Meta}`)
+    const response = await fetch(`http://localhost:5432/bugs/Meta`)
     const json = await response.json()
     console.log(json)
     const thingy = document.createElement('div')
-    thingy.innerText = json[0].name
+    thingy.innerText = json[0]
     main.appendChild(thingy)
 }
