@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors')
 const projectsController = require('./controllers/projectsController.js')
+const bugController = require('./controllers/bugsController.js')
 const app = express();
 const PORT = process.env.PORT || 5432; // Or whichever port you choose for your local server
 
@@ -8,7 +9,15 @@ const PORT = process.env.PORT || 5432; // Or whichever port you choose for your 
 app.use(cors())
 app.use(express.json())
 
+console.log(cors())
+console.log(bugController)
+console.log(projectsController)
+
 app.get('/projects/:user_id', projectsController.grabAllProjects)
+
+// app.get('/bugs/:name', bugController.grabBugs)
+
+// app.get('/bugs/:name', bugController.grabBugInfo)
 
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`)

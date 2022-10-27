@@ -10,4 +10,16 @@ const grabBugs = async (request, response) => {
     response.send(bugs.rows);
 }
 
-module.exports = grabBugs
+const grabBugInfo = async (request, response) => {
+    response.status(200)
+    const bugName = request.params.name
+    const info = await Bugs.grabBugInfoFromDB(bugName)
+    response.send(info.rows)
+}
+
+
+
+module.exports = {
+    grabBugs,
+    grabBugInfo
+}

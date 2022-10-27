@@ -23,7 +23,7 @@ function openNav() {
 
 async function pullBugs() {
     console.log('hi')
-    const response = await fetch(`http://localhost:5432/projects/bugs/3`)
+    const response = await fetch(`http://localhost:5432/bugs/${Meta}`)
     const json = await response.json()
     console.log(json)
     const thingy = document.createElement('div')
