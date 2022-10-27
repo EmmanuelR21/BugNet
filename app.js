@@ -15,9 +15,10 @@ console.log(projectsController)
 
 app.get('/projects/:user_id', projectsController.grabAllProjects)
 
-app.get('/bugs/projectName', bugController.grabBugs)
+app.get('/projects/bug/:name', bugController.grabBugInfo)
 
-// app.get('/bugs/:name', bugController.grabBugInfo)
+app.get('/bugs/:projectName', bugController.grabBugs)
+
 
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`)

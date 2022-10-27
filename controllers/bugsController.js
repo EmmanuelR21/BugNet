@@ -12,8 +12,8 @@ const grabBugs = async (request, response) => {
 
 const grabBugInfo = async (request, response) => {
     response.status(200)
-    const bugName = request.params.name
-    const info = await Bugs.grabBugInfoFromDB(bugName)
+    const name = request.params.name
+    const info = await Bugs.grabBugInfoFromDB(name)
     response.send(info.rows)
 }
 
