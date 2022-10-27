@@ -7,4 +7,6 @@ const grabAllProjects = async (request, response) => {
     response.send(projects.rows)
 }
 
-module.exports = grabAllProjects
+module.exports = {
+    grabAllProjects
+}
