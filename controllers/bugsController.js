@@ -1,11 +1,13 @@
 const Project = require('../models/projectsModel.js');
+const Bugs = require('../models/bugsModel.js');
 
-const grabProjectBugs = async (request, response) => {
+const grabBugs = async (request, response) => {
     response.status(200)
     const projectName = request.params.name
     const ID = await Project.grabIdOfProjectFromDb(projectName)
-    const issues = await Project.grabAllIssuesFromProjectFromDb(ID)
-    console.log(issues.rows)
+    const bugs = await Bugs.grabAllBugsFromDb(ID)
+    
+    response.send(bugs.rows);
 }
 
-module.exports = grabProjectBugs
+module.exports = grabBugs
