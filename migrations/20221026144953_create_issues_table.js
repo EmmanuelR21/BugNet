@@ -4,13 +4,14 @@
  */
 exports.up = function (knex) {
     return knex.schema.createTable('bugs', table => {
-        table.increments('id').primary();
+        table.increments('bug_id').primary();
+        table.integer('project_id').notNullable;
+        table.string('title').notNullable;
         table.string('description').notNullable;
         table.string('code').notNullable;
         table.string('status').notNullable;
+        table.string('feedback');
         table.string('code_feedback');
-        table.string('comment_feedback');
-        table.string('project_id').notNullable;
     });
 };
 
