@@ -7,7 +7,6 @@ const bugController = require('./controllers/bugsController.js')
 //Server 
 const app = express();
 const pool = require('./db.js')
-let cors = require('cors');
 const PORT = process.env.PORT || 5432; // Or whichever port you choose for your local server
 
 //Middle Ware
@@ -57,6 +56,21 @@ app.post("/issues", async (req, rep) => {
     let data = await pool.query("SELECT * FROM  issues WHERE id = $1", [maxId.rows[0].max + 1])
     rep.send(data.rows)
 })
+
+//Server Paths
+app.get('/projects/:user_id', projectsController.grabAllProjects)
+
+app.get('/projects/bug/:name', bugController.grabBugInfo)
+
+app.post('/bugs', bugController.postBug)
+
+app.post('/project', projectsController.postProject)
+
+app.patch('/bugs/feedback', bugController.updateFeedback)
+
+app.get('/bugs/:projectName', bugController.grabBugs)
+
+//Listening
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`)
 })
