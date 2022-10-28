@@ -5,8 +5,7 @@ const grabBugs = async (request, response) => {
     response.status(200)
     const projectName = request.params.projectName
     const ID = await Project.grabIdOfProjectFromDb(projectName)
-    const bugs = await Bugs.grabAllBugsFromDb(ID.rows[0].id)
-
+    const bugs = await Bugs.grabAllBugsFromDb(ID.rows[0].project_id)
     return response.send(bugs.rows);
 }
 

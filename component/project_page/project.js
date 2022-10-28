@@ -24,5 +24,5 @@ querrybtn.addEventListener('click', pullProjects)
 
 // Functions
 function pullProjects() {
-
+    console.log('hi im paul')
 }
