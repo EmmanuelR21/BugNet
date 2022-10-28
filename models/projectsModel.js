@@ -6,7 +6,7 @@ class Project {
     }
 
     static grabAllProjectsOfUserFromDb(userId) {
-        return pool.query('SELECT name FROM users JOIN users_projects ON users.user_id = users_projects.user_id JOIN projects ON projects.project_id = users_projects.project_id WHERE users.user_id = $1', [userId])
+        return pool.query('SELECT name , users_projects.project_id FROM users JOIN users_projects ON users.user_id = users_projects.user_id JOIN projects ON projects.project_id = users_projects.project_id WHERE users.user_id = $1', [userId])
     }
 
     static grabIdOfProjectFromDb(projectName) {
