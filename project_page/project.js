@@ -22,11 +22,8 @@ function openNav() {
 }
 
 async function pullProjects() {
-    // debugger
-    console.log('hi')
     const response = await fetch(`http://localhost:5432/projects/1`)
     const json = await response.json()
-    console.log(json)
     const thingy = document.createElement('div')
     thingy.innerText = json[0].name
     main.appendChild(thingy)

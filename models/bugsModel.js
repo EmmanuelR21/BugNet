@@ -10,7 +10,7 @@ class Bugs {
     }
 
     static grabBugInfoFromDB(bugName) {
-        return pool.query('SELECT * FROM bugs WHERE name = $1', [bugName])
+        return pool.query('SELECT * FROM bugs WHERE title = $1', [bugName])
     }
 
     static postBugInfoToDb(id, description, code, projectId) {
