@@ -12,9 +12,18 @@ const PORT = process.env.PORT || 5432; // Or whichever port you choose for your 
 app.use(cors())
 app.use(express.json())
 
+
 //Server Paths
 app.get('/projects/:user_id', projectsController.grabAllProjects)
+
 app.get('/projects/bug/:name', bugController.grabBugInfo)
+
+app.post('/bugs', bugController.postBug)
+
+app.post('/project', projectsController.postProject)
+
+app.patch('/bugs/feedback', bugController.updateFeedback)
+
 app.get('/bugs/:projectName', bugController.grabBugs)
 
 //Listening
