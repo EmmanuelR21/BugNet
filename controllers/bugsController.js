@@ -28,9 +28,17 @@ const postBug = async (request, response) => {
     return response.send(post.rows)
 }
 
+const updateFeedback = async (request, response) => {
+    response.status(200)
+    const feedbackInfo = request.body
+    const feedback = await Bugs.updateBugFeedbackInfoToDb(feedbackInfo.codeFeedback, feedbackInfo.commentFeedback, feedbackInfo.bugDescription)
+
+    return response.send(feedback.rows)
+}
 
 module.exports = {
     grabBugs,
     grabBugInfo,
-    postBug
+    postBug,
+    updateFeedback
 }

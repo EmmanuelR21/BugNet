@@ -20,6 +20,7 @@ class Project {
     static postProjectInfoToDb(projectId, projectName, projectDescription) {
         return pool.query('INSERT INTO projects (id, name, description) VALUES ($1, $2, $3) RETURNING *', [projectId, projectName, projectDescription])
     }
+
 }
 
 module.exports = Project
