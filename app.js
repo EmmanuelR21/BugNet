@@ -19,13 +19,13 @@ app.get('/projects/:user_id', projectsController.grabAllProjects)
 
 app.get('/projects/bug/:name', bugController.grabBugInfo)
 
+app.get('/bugs/:projectName', bugController.grabBugs)
+
 app.post('/bugs', bugController.postBug)
 
 app.post('/project', projectsController.postProject)
 
 app.patch('/bugs/feedback', bugController.updateFeedback)
-
-app.get('/bugs/:projectName', bugController.grabBugs)
 
 //user data
 app.get("/users-names", async (req, rep) => {
