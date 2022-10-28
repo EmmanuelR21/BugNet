@@ -1,8 +1,7 @@
-let logOutButton = document.getElementById("log-out-button")
+let navLogOutButton = document.getElementById("log-out-button")
 
-logOutButton.addEventListener("click", () => { 
+navLogOutButton.addEventListener("click", () => { 
     localStorage.setItem("logedinusername", null);
     localStorage.setItem("logedinpassword", null);
     localStorage.setItem("logedin", false);
 })
-console.log('ji')

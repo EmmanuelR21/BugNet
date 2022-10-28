@@ -6,7 +6,6 @@ if (logedin === "false") {
 }
 
 let logOutButton = document.getElementById("log-out-button")
-
 logOutButton.addEventListener("click", () => {
     console.log(true)
     localStorage.setItem("logedinusername", null);
@@ -14,7 +13,11 @@ logOutButton.addEventListener("click", () => {
     localStorage.setItem("logedin", false);
     location.replace("../../index.html")
 })
-
+let closeAddTaskForm = document.getElementById("close-add-task-form")
+closeAddTaskForm.addEventListener("click", () => {
+    newTaskFormBackground.style.display = "none"
+    newTaskFormHolder.style.display = "none"
+})
 let getNewTaskForm = document.getElementById("get-add-task-form")
 let newTaskFormBackground = document.getElementById("new-form-background")
 let newTaskFormHolder = document.getElementById("new-task-form-holder")
