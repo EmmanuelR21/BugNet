@@ -41,7 +41,7 @@ async function pullProjects() {
         projectMainDiv.addEventListener("click", () => { 
             localStorage.setItem("currentProjectid", getProject.project_id);
             console.log(localStorage.getItem("currentProjectid"))
-            // location.replace("./bugs_page/bugs.html")
+            location.replace("../bugs_page/bugs.html")
         })
         projectsHolder.append(projectMainDiv)
     }
