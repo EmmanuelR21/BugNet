@@ -20,10 +20,10 @@ const grabBugInfo = async (request, response) => {
 const postBug = async (request, response) => {
     response.status(200)
     const postData = request.body
-    const projectId = await Project.grabIdOfProjectFromDb(postData.projectName)
+    //const projectId = await Project.grabIdOfProjectFromDb(postData.projectName)
     let newId = await Bugs.grabLatestIdFromDb()
-    newId = newId.rows[0].max + 1
-    const post = await Bugs.postBugInfoToDb(newId, postData.description, postData.code, +projectId.rows[0].id)
+    newId = +newId.rows[0].max + 1
+    const post = await Bugs.postBugInfoToDb(newId, postData.projectId, postData.title, postData.description, postData.code)
 
     return response.send(post.rows)
 }
