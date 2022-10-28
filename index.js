@@ -55,8 +55,10 @@ logInForm.addEventListener("submit", (e) => {
                 loginSignupAlert.innerText ="invalid log in"
             } else if (result.alert === "loged in") {
                 loginSignupAlert.innerText = "loged in"
+                console.log(result)
                 localStorage.setItem("logedinusername", logInForm[0].value);
                 localStorage.setItem("logedinpassword", logInForm[1].value);
+                localStorage.setItem("userid", result.data.user_id);
                 localStorage.setItem("logedin", true);
                 location.replace("./component/project_page/project.html")
             }
