@@ -1,49 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="sidebar.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nav.css">
 </head>
+
 <body>
     <nav>
         <h1>BugNext</h1>
         <div>
-            
+            <p id="log-out-button">Log Out</p>
         </div>
     </nav>
-    <div id ="forms">
-        <div id="login-or-sign-up">
-            <p id="get-login">Login</p>
-            <p id="get-sign-up">Sign up</p>
-        </div>
-        <form id="login-form">
-            <label for="user-name">User Name:</label>
-            <input type="text" id="user-name" name="user-name" value="">
-            <br>
-            <label for="user-password">Password:</label>
-            <input type="password" id="user-password" name="user-password" value="">
-            <br>
-            <input type="submit">
-            
-        </form>
-        <form id="sign-up-form">
-            <label for="new-user-name">User Name:</label>
-            <input type="text" id="new-user-name" name="new-user-name" value="">
-            <br>
-            <label for="new-user-password">Password:</label>
-            <input type="password" id="new-user-password" name="new-user-password" value="">
-            <br>
-            <label for="confirm-new-user-password">confirm Password:</label>
-            <input type="password" id="confirm-new-user-password" name="confirm-new-user-password" value="">
-            <br>
-            <input type="submit">
-        </form>
 
-        
+    <div id="main">
+        <div id="forms">
+            <div id="login-or-sign-up">
+
+                <div id="get-login">
+                    <p>Login</p>
+                </div>
+                <div id="get-sign-up">
+                    <p>Sign up</p>
+                </div>
+            </div>
+            
+            <p id="login-signup-alert">hi</p>
+            <form id="login-form">
+                <p>User Name</p>
+                <input type="text" id="user-name" value="">
+                <br>
+                <p>Password</p>
+                <input type="password" id="user-password" name="user-password" value="">
+                <br>
+                <input type="submit">
+
+            </form>
+            <form id="sign-up-form">
+                <p>User Name</p>
+                <input type="text" id="new-user-name" name="new-user-name" value="">
+                <br>
+                <p>Password</p>
+                <input type="password" id="new-user-password" name="new-user-password" value="">
+                <br>
+                <p>confirm Password</p>
+                <input type="password" id="confirm-new-user-password" name="confirm-new-user-password" value="">
+                <br>
+                <input type="submit">
+            </form>
+        </div>
     </div>
-    <script src="index.js"></script>
+    <script type="module" src="index.js"></script>
+    <script src="nav.js"></script>
 </body>
+
 </html>

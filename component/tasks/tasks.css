@@ -2,10 +2,6 @@
     margin: 0px;
 }
 
-nav {
-    background-color: blue;
-    height: 100px;
-}
 #list-of-tasks{
     display: flex;
     justify-content: center;
