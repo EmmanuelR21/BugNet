@@ -4,8 +4,8 @@
  */
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
-  await knex('issues').del()
-  await knex('issues').insert([
-    { id: 1, description: 'friends tab not working', code: 'friends.push(x)', status: 'todo', code_feedback: null, comment_feedback: null, project_id: 1 },
+  await knex('bugs').del()
+  await knex('bugs').insert([
+    { bug_id: 1, project_id: 1, title: 'friends tab not working', description:'blah blah blah blah blah blah blah blah blah blah blah blah blah blah', code: 'friends.push(x)', status: 'todo', feedback: null, code_feedback: null, },
   ]);
 };
