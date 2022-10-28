@@ -28,18 +28,22 @@
     <div id="main">
         <button class="openbtn">☰ Open Sidebar</button>
         <button id="get-add-task-form">Add Task +</button>
+
         <div id="new-task-form-holder">
             <p id="close-add-task-form">x</p>
             <form id="new-task-form">
-                <label for="user-name">description </label>
-                <input type="text" id="user-name" name="user-name" value="">
+                <p>Title</p>
+                <input type="text" id="new-task-title" name="user-name" value="">
+                <p>description </p>
+                <textarea maxlength="600" form="new-task-form" id="new-task-description"></textarea>
                 <br>
-                <label for="add-code">Code:</label>
-                <textarea form="new-task-form" id="add-code"></textarea>
+                <p>Code:</p>
+                <textarea form="new-task-form" id="new-task-code"></textarea>
                 <br>
                 <input type="submit">
             </form>
         </div>
+
         <div id="list-of-tasks">
             <div id="bug-task" class="task-list">
                 <h1 class="task-completion-level">Taks</h1>

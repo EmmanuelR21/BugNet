@@ -4,6 +4,6 @@
 nav{
     display: flex;
     justify-content: space-between;
-    padding:10px;
-    background-color: rgb(68, 106, 139);
+    padding: 10px;
+    background-color: #4586be;
 }

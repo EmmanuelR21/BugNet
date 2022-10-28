@@ -2,7 +2,6 @@
 let logedinusername = localStorage.getItem("logedinusername");
 let logedinpassword = localStorage.getItem("logedinpassword");
 let logedin = localStorage.getItem("logedin");
-console.log(logedin)
 if (logedin === "true") { 
     location.replace("./component/project_page/project.html")
 }
@@ -34,7 +33,7 @@ getSignUp.addEventListener("click", () => {
 logInForm.addEventListener("submit", (e) => { 
     e.preventDefault()
 
-    console.log(logInForm[0].value, logInForm[1].value)
+
     if (logInForm[0].value.length === 0 && logInForm[1].value.length === 0) {
         loginSignupAlert.innerText = "Missing username and password";
         return false;
@@ -47,6 +46,7 @@ logInForm.addEventListener("submit", (e) => {
         loginSignupAlert.innerText = "missing password"
         return false;
     }
+    console.log(logInForm[0].value, logInForm[1].value)
     
     fetch(`http://localhost:5432/users-names/${logInForm[0].value}/${logInForm[1].value}`)
         .then(response => response.json())
@@ -67,12 +67,22 @@ logInForm.addEventListener("submit", (e) => {
 // submit signUp form
 signUpForm.addEventListener("submit", (e) => {
     e.preventDefault()
-    if (signUpForm[1].value === signUpForm[2].value) {
-        localStorage.setItem("logedinusername", signUpForm[0].value);
-        localStorage.setItem("logedinpassword", signUpForm[1].value);
-        localStorage.setItem("logedin", true);
-    } else { 
-        
+    console.log('hi')
+    if (signUpForm[0].value.length === 0 && signUpForm[1].value.length === 0 && signUpForm[2].value.length) {
+        loginSignupAlert.innerText = "Missing username and password";
+        return false;
+    }
+    if (signUpForm[0].value.length === 0) {
+        loginSignupAlert.innerText = "Missing username"
+        return false;
+    }
+    if (signUpForm[1].value.length === 0 || signUpForm[2].value.length === 0) {
+        loginSignupAlert.innerText = "missing password"
+        return false;
+    }
+    if (signUpForm[1].value.length !== signUpForm[2].value.length) {
+        loginSignupAlert.innerText = "password does not match"
+        return false;
     }
 })
 

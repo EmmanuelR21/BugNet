@@ -53,10 +53,20 @@
     background-color: red;
     z-index: 2;
 }
-#add-code{
-    max-width:410px;
-    max-height: 500px;
 
+#new-task-description{
+    width: 400px;
+    height: 60px;
+    min-width: 250px;
+    max-width: 410px;
+    max-height: 175px;
+}
+#new-task-code{
+    width: 400px;
+    height: 60px;
+    min-width: 250px;
+    max-width:410px;
+    max-height: 175px;
 }
 #close-add-task-form{
     position: absolute;
