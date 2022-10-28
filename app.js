@@ -35,6 +35,8 @@ app.get("/users-names", usersController.grabAllUsernames)
 //check id user exist
 app.get("/users-names/:name/:password", usersController.loginAuthentication)
 
+app.post('/users-names', usersController.addUserInfo)
+
 //Listening
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`)

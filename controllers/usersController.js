@@ -20,7 +20,15 @@ const loginAuthentication = async (req, rep) => {
     }
 }
 
+const addUserInfo = async (request, response) => {
+    let userInfo = request.body
+    const post = await User.postUsernameAndPasswordToDb(userInfo.id, userInfo.username, userInfo.password)
+
+    return response.send(post)
+}
+
 module.exports = {
     grabAllUsernames,
-    loginAuthentication
+    loginAuthentication,
+    addUserInfo
 }

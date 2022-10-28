@@ -6,11 +6,15 @@ class User {
     }
 
     static grabUserDataFromDb(name) {
-        pool.query("SELECT * FROM users WHERE username = $1", [name])
+        return pool.query("SELECT * FROM users WHERE username = $1", [name])
     }
 
-    static checkPasswordForUsernameFromDb(name){
-        pool.query("SELECT password FROM users WHERE username = $1", [name])
+    static checkPasswordForUsernameFromDb(name) {
+        return pool.query("SELECT password FROM users WHERE username = $1", [name])
+    }
+
+    static postUsernameAndPasswordToDb(userId, username, password) {
+        return pool.query('INSERT INTO users (user_id, username, password) VALUES ($1, $2, $3) RETURNING *', [userId, username, password])
     }
 }
 
