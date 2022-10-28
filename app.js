@@ -57,19 +57,6 @@ app.post("/issues", async (req, rep) => {
     rep.send(data.rows)
 })
 
-//Server Paths
-app.get('/projects/:user_id', projectsController.grabAllProjects)
-
-app.get('/projects/bug/:name', bugController.grabBugInfo)
-
-app.post('/bugs', bugController.postBug)
-
-app.post('/project', projectsController.postProject)
-
-app.patch('/bugs/feedback', bugController.updateFeedback)
-
-app.get('/bugs/:projectName', bugController.grabBugs)
-
 //Listening
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`)
