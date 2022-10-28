@@ -38,3 +38,6 @@
 input{
     margin: 10px 0;
 }
+#log-out-button{
+    display: none;
+}
