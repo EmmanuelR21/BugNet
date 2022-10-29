@@ -29,7 +29,7 @@ async function pullProjects() {
         redirect: 'follow'
     };
 
-    let tasks = await fetch("http://localhost:5432/projects/3", requestOptions).then(response => response.json())
+    let tasks = await fetch(`http://localhost:5432/projects/${localStorage.getItem("userid")}`, requestOptions).then(response => response.json())
     console.log(tasks)
     for (let getProject of tasks ) { 
         console.log(getProject)
