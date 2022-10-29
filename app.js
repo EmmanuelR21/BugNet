@@ -2,8 +2,8 @@
 const express = require('express');
 const cors = require('cors')
 const projectsRouter = require('./routes/projectsRoutes.js')
-const bugController = require('./controllers/bugsController.js')
-const usersController = require('./controllers/usersController.js')
+const bugsRouter = require('./routes/bugsRoutes.js')
+const usersRouter = require('./routes/usersRoutes.js')
 
 //Server 
 const app = express();
@@ -13,25 +13,10 @@ const PORT = process.env.PORT || 5432; // Or whichever port you choose for your 
 app.use(cors())
 app.use(express.json())
 
+//Server Routes
 app.use('/projects', projectsRouter)
-
-
-//Server Paths
-
-app.get('/bugs/:projectName', bugController.grabBugs)
-
-app.post('/bugs', bugController.postBug)
-
-
-app.patch('/bugs/feedback', bugController.updateFeedback)
-
-//user data
-app.get("/users-names", usersController.grabAllUsernames)
-
-//check id user exist
-app.get("/users-names/:name/:password", usersController.loginAuthentication)
-
-app.post('/users-names', usersController.addUserInfo)
+app.use('/bugs', bugsRouter)
+app.use('/users', usersRouter)
 
 //Listening
 app.listen(PORT, () => {
