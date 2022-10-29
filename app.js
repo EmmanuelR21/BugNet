@@ -1,31 +1,27 @@
 //Requires
 const express = require('express');
 const cors = require('cors')
-const projectsController = require('./controllers/projectsController.js')
+const projectsRouter = require('./routes/projectsRoutes.js')
 const bugController = require('./controllers/bugsController.js')
 const usersController = require('./controllers/usersController.js')
 
 //Server 
 const app = express();
-const pool = require('./db.js');
-const User = require('./models/usersModel.js');
 const PORT = process.env.PORT || 5432; // Or whichever port you choose for your local server
 
 //Middle Ware
 app.use(cors())
 app.use(express.json())
 
+app.use('/projects', projectsRouter)
+
 
 //Server Paths
-app.get('/projects/:user_id', projectsController.grabAllProjects)
-
-app.get('/projects/bug/:name', bugController.grabBugInfo)
 
 app.get('/bugs/:projectName', bugController.grabBugs)
 
 app.post('/bugs', bugController.postBug)
 
-app.post('/project', projectsController.postProject)
 
 app.patch('/bugs/feedback', bugController.updateFeedback)
 
