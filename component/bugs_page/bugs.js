@@ -1,14 +1,18 @@
 // Document variables
 const querrybtn = document.querySelector('.querrybtn')
+const bugsDiv = document.querySelector('.bugs')
 
 // Event Listeners
-
-querrybtn.addEventListener('click', pullBugs) //THIS SHOULD BE CHANGED TO LOAD NOT CLICK
+document.addEventListener('DOMContentLoaded', pullBugs)
+closeSideBar.addEventListener("click", closeNav)
+openSideBar.addEventListener("click", openNav)
 
 // Functions
 
 async function pullBugs() {
-    const response = await fetch(`http://localhost:5432/bugs/Meta`) //THE WORD 'META' NEEDS TO CHANGE DEPENDING ON 
+    const response = await fetch(`http://localhost:5432/bugs/${localStorage.currentProjectid}`)
     const json = await response.json()
-    console.log(json) //THE PAGE SHOULD CHANGE DEPENDING ON WHAT IS RECIEVED FROM THE json VARIABLE
+    for (const bugs of json){
+        bugsDiv.append(document.createElement('p').innerText = bugs.title)
+    }
 }

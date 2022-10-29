@@ -34,15 +34,7 @@ newTaskForm.addEventListener("submit", (e) => {
     console.log(newTaskForm[2].value)
 })
 
-async function getAllTasks() { 
-    var requestOptions = {
-        method: 'GET',
-        body: "",
-        redirect: 'follow'
-    };
-
-    await fetch("http://localhost:5432/issues", requestOptions)
-        .then(response => response.json())
-        .then(data => console.log(data));
+async function getAllUserTasks() { 
+    console.log('hi')
 }
-getAllTasks()
+getAllUserTasks()

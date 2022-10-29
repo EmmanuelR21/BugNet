@@ -42,7 +42,7 @@ async function pullProjects() {
         projectMainDiv.classList.add("projectBoxs", "cursor-pointer")
         projectMainDiv.append(projectName, projectDescription)
         projectMainDiv.addEventListener("click", () => { 
-            localStorage.setItem("currentProjectid", getProject.project_id);
+            localStorage.setItem("currentProjectid", getProject.name);
             console.log(localStorage.getItem("currentProjectid"))
             location.replace("../bugs_page/bugs.html")
         })
