@@ -3,10 +3,11 @@
 }
 
 #forms{
-    background-color: lightblue;
+    background-color: rgba(173, 173, 173, 0.264);
+    backdrop-filter: blur(10px);
     border-radius: 10px;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 100px auto 0;
 }
 #login-or-sign-up{
     display: flex;

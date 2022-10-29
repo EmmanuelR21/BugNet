@@ -7,7 +7,8 @@
     justify-content: center;
 }
 .task-list {
-    background-color: gray;
+    backdrop-filter: blur(5px);
+    background-color: rgba(67, 67, 67, 0.416);
     border-radius: 20px;
     max-width: 400px;
     padding: 20px 5px;
@@ -41,11 +42,11 @@
     width: 100%;
     z-index: 1;
     opacity: 0.5;
-    display:none;
+    /* display:none; */
 }
 
 #new-task-form-holder{
-    display: none;
+    /* display: none; */
     position: absolute;
     width: 420px;
     padding: 20px 20px;
@@ -55,13 +56,16 @@
 }
 
 #new-task-description{
+    border: 0px;
+    resize: none;
     width: 400px;
-    height: 60px;
     min-width: 250px;
     max-width: 410px;
     max-height: 175px;
 }
 #new-task-code{
+    resize: none;
+    border: 0px;
     width: 400px;
     height: 60px;
     min-width: 250px;
