@@ -15,13 +15,14 @@ logOutButton.addEventListener("click", () => {
 })
  
 // Document variables
-const querrybtn = document.querySelector('.querrybtn')
-function run() { 
-    console.log("yes")
-}
-// Event Listeners
-querrybtn.addEventListener('click', pullProjects)
+const addProjectButton = document.querySelector('.add-project')
 
+// Event Listeners
+addProjectButton.addEventListener('click', addProject)
+
+async function addProject() { 
+    
+}
 // Functions
 async function pullProjects() {
     var requestOptions = {
@@ -35,9 +36,11 @@ async function pullProjects() {
         console.log(getProject)
         let projectMainDiv = document.createElement("div")
         let projectName = document.createElement("p")
-        projectMainDiv.classList.add("projectBoxs")
+        let projectDescription = document.createElement("p")
         projectName.innerText = getProject.name
-        projectMainDiv.append(projectName)
+        projectDescription.innerText = getProject.description
+        projectMainDiv.classList.add("projectBoxs", "cursor-pointer")
+        projectMainDiv.append(projectName, projectDescription)
         projectMainDiv.addEventListener("click", () => { 
             localStorage.setItem("currentProjectid", getProject.project_id);
             console.log(localStorage.getItem("currentProjectid"))
