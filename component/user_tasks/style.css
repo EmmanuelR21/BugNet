@@ -17,6 +17,7 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+
 .task-list {
     backdrop-filter: blur(5px);
     background-color: rgba(67, 67, 67, 0.416);
@@ -26,7 +27,7 @@
     margin: 10px;
 }
 
-.task-completion-level{
+.task-completion-level {
     text-align: center;
 }
 
@@ -37,7 +38,7 @@
     margin: 10px 0;
 }
 
-.urgency-level{
+.urgency-level {
     padding: 5% 5px;
     background-color: red;
     text-align: center;
@@ -46,17 +47,17 @@
     margin-right: 5px;
 }
 
-#new-form-background{
+#new-form-background {
     background-color: black;
     position: absolute;
     height: 100%;
     width: 100%;
     z-index: 1;
     opacity: 0.5;
-    display:none;
+    display: none;
 }
 
-#new-task-form-holder{
+#new-task-form-holder {
     display: none;
     position: absolute;
     width: 420px;
@@ -66,7 +67,7 @@
     z-index: 2;
 }
 
-#new-task-description{
+#new-task-description {
     border: 0px;
     resize: none;
     width: 400px;
@@ -74,26 +75,44 @@
     max-width: 410px;
     max-height: 175px;
 }
-#new-task-code{
+
+#individual-tasks {
+    display: none;
+    position: absolute;
+    width: 420px;
+    padding: 20px 20px;
+    left: calc(50% - 210px);
+    background-color: red;
+    z-index: 2;
+}
+
+#close-individual-task-form {
+    position: absolute;
+    right: 10px
+}
+
+#new-task-code {
     resize: none;
     border: 0px;
     width: 400px;
     height: 60px;
     min-width: 250px;
-    max-width:410px;
+    max-width: 410px;
     max-height: 175px;
 }
-#close-add-task-form{
+
+#close-add-task-form {
     position: absolute;
     right: 10px;
 }
 
-#bug-task div{
+#bug-task div {
     border-radius: 10px;
     background-color: rgba(207, 106, 106, 0.801);
     padding: 10px;
     margin: 10px;
 }
-#bug-task div h1{
+
+#bug-task div h1 {
     font-size: 20px;
 }
