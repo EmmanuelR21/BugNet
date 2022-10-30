@@ -6,11 +6,12 @@ const bugsDiv = document.querySelector('.bugs')
 document.addEventListener('DOMContentLoaded', pullBugs)
 closeSideBar.addEventListener("click", closeNav)
 openSideBar.addEventListener("click", openNav)
-
+querrybtn.addEventListener("click", pullBugs)
 // Functions
 
 async function pullBugs() {
-    const response = await fetch(`http://localhost:5432/bugs/${localStorage.currentProjectid}`)
+
+    const response = await fetch(`http://localhost:5432/bugs/${localStorage.getItem("currentProjectid")}`)
     const json = await response.json()
     for (const bugs of json){
         bugsDiv.append(document.createElement('p').innerText = bugs.title)

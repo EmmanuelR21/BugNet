@@ -5,7 +5,7 @@ if (logedin === "false") {
     location.replace("../../index.html")
 }
 let logOutButton = document.getElementById("log-out-button")
-let projectsHolder = document.getElementById("projects-holder")
+
 logOutButton.addEventListener("click", () => {
     console.log(true)
     localStorage.setItem("logedinusername", null);
@@ -13,15 +13,118 @@ logOutButton.addEventListener("click", () => {
     localStorage.setItem("logedin", false);
     location.replace("../../index.html")
 })
- 
+let projectsHolder = document.getElementById("projects-holder")
 // Document variables
-const addProjectButton = document.querySelector('.add-project')
+const getCreateProjectForm = document.querySelector('#create-project')
+const getAddProjectForm = document.querySelector('#add-project')
 
+let newFormBackground = document.getElementById("new-form-background")
+
+let newProjectFormHolder = document.getElementById("new-project-form-holder")
+let addProjectFormHolder = document.getElementById("add-project-form-holder")
+
+let newProjectForm = document.getElementById("new-project-form")
+let addProjectForm = document.getElementById("add-project-form")
+
+let closeNewProjectForm = document.getElementById("close-new-project-form")
+let closeAddProjectForm = document.getElementById("close-add-project-form")
+
+let newProjectAlert = document.getElementById("new-project-alert")
+let addProjectAlert = document.getElementById("add-project-alert")
 // Event Listeners
-addProjectButton.addEventListener('click', addProject)
+getCreateProjectForm.addEventListener('click', () => { 
+    newFormBackground.style.display = "block"
+    newProjectFormHolder.style.display = "block"
+})
+getAddProjectForm.addEventListener('click', () => {
+    newFormBackground.style.display = "block"
+    addProjectFormHolder.style.display = "block"
+})
 
-async function addProject() { 
+closeNewProjectForm.addEventListener('click', () => {
+    newFormBackground.style.display = "none"
+    newProjectFormHolder.style.display = "none"
+})
+closeAddProjectForm.addEventListener('click', () => { 
+    newFormBackground.style.display = "none"
+    addProjectFormHolder.style.display = "none"
+})
+newProjectForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log(newProjectForm[0].value)
+    creatNewProject(newProjectForm[0].value,newProjectForm[1].value)
+})
+addProjectForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    addProject(newProjectForm[0].value)
+})
+
+async function creatNewProject(newProjectName, newProjectDescription) { 
+    let doesProjectExist = false
+    let tasks = await fetch("http://localhost:5432/projects/")
+        .then(response => response.json())
+        .then(result => result)
+    for (obj of tasks) { 
+        if (obj.name === newProjectName) doesProjectExist = true
+    }
+    if (!doesProjectExist) {
+        newProjectAlert.innerText = "Project Created"
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify({"name": newProjectName,"description": newProjectDescription}),
+            redirect: 'follow'
+        };
+        fetch("http://localhost:5432/projects/", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result));
+        
+        let projectMainDiv = document.createElement("div");
+        let projectName = document.createElement("p");
+        let projectDescription = document.createElement("p");
+        projectName.innerText = newProjectName;
+        projectDescription.innerText = newProjectDescription;
+        projectMainDiv.classList.add("projectBoxs", "cursor-pointer");
+
+        projectMainDiv.append(projectName, projectDescription)
+        projectMainDiv.addEventListener("click", () => {
+            localStorage.setItem("currentProjectid", newProjectName);
+            console.log(localStorage.getItem("currentProjectid"));
+            location.replace("../bugs_page/bugs.html");
+        })
+        projectsHolder.append(projectMainDiv)
+    } { 
+        newProjectAlert.innerText = "Project Name taken"
+    }
     
+}
+
+async function addProject(newProjectName) {
+    let doesUserHaveProject = false
+    let tasks = await fetch(`http://localhost:5432/projects/${localStorage.getItem("userid")}`).then(response => response.json())
+    for (let getProject of tasks) { 
+        if (getProject.name === newProjectName) {
+            doesUserHaveProject = true
+            addProjectAlert.innerText = "You have this Project"
+        }
+    }
+    for (obj of tasks) {
+        if (obj.name === newProjectName) doesProjectExist = true
+    }
+    let doesProjectExist = false
+    let projects = await fetch("http://localhost:5432/projects/")
+        .then(response => response.json())
+        .then(result => result)
+    for (obj of tasks) {
+        if (obj.name === newProjectName) doesProjectExist = true
+    }
+    if (!doesUserHaveProject && doesProjectExist) {
+        addProjectAlert.innerText = "Project added"
+    } else if (!doesUserHaveProject) { 
+        addProjectAlert.innerText = "Project Does not exist"
+    }
 }
 // Functions
 async function pullProjects() {
@@ -31,9 +134,9 @@ async function pullProjects() {
     };
 
     let tasks = await fetch(`http://localhost:5432/projects/${localStorage.getItem("userid")}`, requestOptions).then(response => response.json())
-    console.log(tasks)
+    //console.log(tasks)
     for (let getProject of tasks ) { 
-        console.log(getProject)
+        // console.log(getProject)
         let projectMainDiv = document.createElement("div")
         let projectName = document.createElement("p")
         let projectDescription = document.createElement("p")

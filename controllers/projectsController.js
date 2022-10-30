@@ -1,6 +1,6 @@
 const Project = require('../models/projectsModel.js');
 
-const grabAllProjects = async (request, response) => {
+const grabAllUserProjects = async (request, response) => {
     response.status(200)
     const userid = request.params.user_id
     const projects = await Project.grabAllProjectsOfUserFromDb(userid);
@@ -17,8 +17,13 @@ const postProject = async (request, response) => {
     return response.send(project.rows);
 }
 
-
+const grabAllProjectsName = async(request, response)=>{ 
+    response.status(200)
+    let allProjectName = await Project.grabAllProjectsNameDb();
+    return response.send(allProjectName.rows);
+}
 module.exports = {
-    grabAllProjects,
-    postProject
+    grabAllUserProjects,
+    postProject,
+    grabAllProjectsName
 }
