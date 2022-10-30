@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../sidebar.css">
+    <link rel="stylesheet" href="../../nav.css">
+</head>
+
+<body>
+    <div id="new-form-background"></div>
+    <nav>
+        <h1>BugNext</h1>
+        <div>
+            <p id="log-out-button" class="cursor-pointer">Log Out</p>
+        </div>
+    </nav>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn">×</a>
+        <a href="../project_page/project.html">Projects</a>
+        <a href="#">My tasks</a>
+        <a href="#">link 3</a>
+        <a href="#">link 4</a>
+    </div>
+
+    <div id="main">
+        <button class="openbtn">☰ Open Sidebar</button>
+        <button id="get-add-task-form">Add Task +</button>
+
+        <div id="new-task-form-holder">
+            <p id="close-add-task-form">x</p>
+            <form id="new-task-form">
+                <p>Title</p>
+                <input type="text" id="new-task-title" name="user-name" value="">
+                <p>description </p>
+                <textarea maxlength="600" form="new-task-form" id="new-task-description"></textarea>
+                <br>
+                <p>Code:</p>
+                <textarea form="new-task-form" id="new-task-code"></textarea>
+                <br>
+                <input type="submit">
+            </form>
+        </div>
+
+        <div id="list-of-tasks">
+            <div id="bug-task" class="task-list">
+                <h1 class="task-completion-level">Tasks</h1>
+            </div>
+            <div id="task-in-review" class="task-list">
+                <h1 class="task-completion-level">Tasks in Review</h1>
+            </div>
+
+            <div id="task-completed" class="task-list">
+                <h1 class="task-completion-level">Tasks Completed</h1>
+            </div>
+
+        </div>
+    </div>
+    <script src="./script.js"></script>
+    <script src="../../nav.js"></script>
+    <script src="../../sidebar.js"></script>
+</body>
+
+</html>

@@ -22,15 +22,41 @@
         <a href="javascript:void(0)" class="closebtn">×</a>
         <p>hi</p>
         <a href="#">Projects</a>
-        <a href="../tasks/tasks.html">My tasks</a>
+        <a href="../user_tasks/index.html">My tasks</a>
         <a href="#">link 3</a>
         <a href="#">link 4</a>
     </div>
 
     <div id="main">
         <button class="openbtn">☰ Open Sidebar</button>
-        <button class="add-project cursor-pointer">Add Project</button>
+        <button id="add-project" class="cursor-pointer">Add Project</button>
         <button id="create-project" class="cursor-pointer">Create Project</button>
+        
+        <div id="new-form-background"></div>
+        <div id="new-project-form-holder">
+            <p id="close-new-project-form" class="cursor-pointer">X</p>
+            <p id="new-project-alert"></p>
+            <form id="new-project-form">
+                <p>Project Name</p>
+                <input>
+                <p>description</p>
+                <input>
+                <br>
+                <input type="submit">
+            </form>
+        </div>
+
+        <div id="add-project-form-holder">
+            <p id="close-add-project-form" class="cursor-pointer">X</p>
+            <p id="add-project-alert">s</p>
+            <form id="add-project-form">
+                <p>Project Name</p>
+                <input>
+                <br>
+                <input type="submit">
+            </form>
+        </div>
+
         <div id="projects-holder"></div>
     </div>
 

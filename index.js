@@ -17,14 +17,19 @@ let loginSignupAlert = document.getElementById("login-signup-alert")
 // go to login or sign yo form
 getLogIN.addEventListener("click", () => { 
     getLogIN.style.borderBottom = "0px solid black"
+    getLogIN.style.backgroundColor = "rgba(173, 173, 173, 0)";
+    
     getSignUp.style.borderBottom = "2px solid black"
+    getSignUp.style.backgroundColor = "rgba(55, 55, 55, 0.688)";
     logInForm.style.display = "block"
     signUpForm.style.display = "none"
 })
 
 getSignUp.addEventListener("click", () => {
     getLogIN.style.borderBottom = "2px solid black"
+    getLogIN.style.backgroundColor = "rgba(55, 55, 55, 0.688)";
     getSignUp.style.borderBottom = "0px solid black"
+    getSignUp.style.backgroundColor = "rgba(173, 173, 173, 0)";
     logInForm.style.display = "none"
     signUpForm.style.display = "block"
 })

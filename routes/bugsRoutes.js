@@ -4,7 +4,7 @@ const bugController = require('../controllers/bugsController.js')
 
 router.get('/:projectName', bugController.grabBugs)
 
-router.get('/:id', bugController.grabBugsOfUser)
+router.get('/user/:id', bugController.grabBugsOfUser)
 
 router.post('/', bugController.postBug)
 
