@@ -24,8 +24,12 @@ class Bugs {
     static grabBugsOfSpecificUserFromDb(userId) {
         return pool.query('SELECT * FROM bugs WHERE user_id = $1', [userId])
     }
-    static updateBugStatusDb(bugId, newStatus) { 
-        return pool.query('UPDATE bugs SET status = $1 WHERE bug_id = $2 RETURNING *', [newStatus,bugId])
+    static updateBugStatusDb(bugId, newStatus) {
+        return pool.query('UPDATE bugs SET status = $1 WHERE bug_id = $2 RETURNING *', [newStatus, bugId])
+    }
+
+    static updateBugDescriptionAndCodeDb(updatedDescription, updatedCode) {
+        return pool.query('UPDATE bugs SET description = $1, code = $2 RETURNING *', [updatedDescription, updatedCode])
     }
 }
 

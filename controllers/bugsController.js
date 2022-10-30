@@ -44,12 +44,19 @@ const grabBugsOfUser = async (request, response) => {
     return response.send(bug.rows);
 }
 
-const updateBugStatus = async (request, response) => { 
+const updateBugStatus = async (request, response) => {
     const newStatus = request.body.status
     const bugId = request.params.id
     console.log(bugId, newStatus)
     const bug = await Bugs.updateBugStatusDb(bugId, newStatus);
     return response.send(bug.rows);
+}
+
+const updateCodeAndDescription = async (request, response) => {
+    const updatedInfo = request.body
+    const updatedBug = await Bugs.updateBugDescriptionAndCodeDb(updatedInfo.description, updatedInfo.code)
+
+    return response.send(updatedBug.rows)
 }
 
 module.exports = {
@@ -58,5 +65,6 @@ module.exports = {
     postBug,
     updateFeedback,
     grabBugsOfUser,
-    updateBugStatus
+    updateBugStatus,
+    updateCodeAndDescription
 }
