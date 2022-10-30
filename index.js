@@ -77,8 +77,8 @@ signUpForm.addEventListener("submit", (e) => {
     createAccount(signUpForm[0].value, signUpForm[1].value, signUpForm[2].value)
 })
 
-async function createAccount(newAccountName, newUserPasword, confirmNewUserPasword) { 
-    if (newAccountName.length === 0 && newUserPasword.length === 0 && confirmNewUserPasword.length) {
+async function createAccount(newAccountName, newUserPassword, confirmNewUserPassword) { 
+    if (newAccountName.length === 0 && newUserPassword.length === 0 && confirmNewUserPassword.length) {
         loginSignupAlert.innerText = "Missing username and password";
         return false;
     }
@@ -86,11 +86,11 @@ async function createAccount(newAccountName, newUserPasword, confirmNewUserPaswo
         loginSignupAlert.innerText = "Missing username"
         return false;
     }
-    if (newUserPasword.length === 0 || confirmNewUserPasword.length === 0) {
+    if (newUserPassword.length === 0 || confirmNewUserPassword.length === 0) {
         loginSignupAlert.innerText = "missing password"
         return false;
     }
-    if (newUserPasword.length !== confirmNewUserPasword.length) {
+    if (newUserPassword.length !== confirmNewUserPassword.length) {
         loginSignupAlert.innerText = "password does not match"
         return false;
     }
@@ -98,23 +98,25 @@ async function createAccount(newAccountName, newUserPasword, confirmNewUserPaswo
     let allUsersNames = await fetch("http://localhost:5432/users/users")
         .then(response => response.json())
         .then(result => result)
+    console.log(allUsersNames)
     for (let usersNames of allUsersNames) { 
         if (usersNames.username === newAccountName) { 
             wasNameTaken = true
+            console.log(newAccountName, newUserPassword, confirmNewUserPassword)
             loginSignupAlert.innerText = "User Name Taken"
             return false;
         }
     }
     ////
-    var myHeaders = new Headers();
+    let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    var requestOptions = {
+    let requestOptions = {
         method: 'POST',
         headers: myHeaders,
         body: JSON.stringify({
             "name": newAccountName,
-            "password": newUserPasword
+            "password": newUserPassword
         }),
         redirect: 'follow'
     };
@@ -125,7 +127,7 @@ async function createAccount(newAccountName, newUserPasword, confirmNewUserPaswo
     console.log(userData)
     loginSignupAlert.innerText = "loged in";
     localStorage.setItem("logedinusername", newAccountName);
-    localStorage.setItem("logedinpassword", newUserPasword);
+    localStorage.setItem("logedinpassword", newUserPassword);
     localStorage.setItem("userid", userData.user_id);
     localStorage.setItem("logedin", true);
     location.replace("./component/project_page/project.html");

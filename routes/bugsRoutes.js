@@ -10,5 +10,6 @@ router.post('/', bugController.postBug)
 
 router.patch('/feedback', bugController.updateFeedback)
 
+router.patch('/status/:id', bugController.updateBugStatus)
 
 module.exports = router
