@@ -24,6 +24,9 @@ class Bugs {
     static grabBugsOfSpecificUserFromDb(userId) {
         return pool.query('SELECT * FROM bugs WHERE user_id = $1', [userId])
     }
+    static updateBugStatusDb(bugId, newStatus) { 
+        return pool.query('UPDATE bugs SET status = $1 WHERE bug_id = $2 RETURNING *', [newStatus,bugId])
+    }
 }
 
 module.exports = Bugs

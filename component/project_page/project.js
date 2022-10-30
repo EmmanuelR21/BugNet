@@ -99,6 +99,8 @@ async function creatNewProject(newProjectName, newProjectDescription) {
 
         await fetch("http://localhost:5432/users/project", requestOptions)
         projectsHolder.append(projectMainDiv)
+        newFormBackground.style.display = "none"
+        newProjectFormHolder.style.display = "none"
     } {
         newProjectAlert.innerText = "Project Name taken"
     }
@@ -151,6 +153,8 @@ async function addProject(newProjectName) {
             location.replace("../bugs_page/bugs.html")
         })
         projectsHolder.append(projectMainDiv)
+        newFormBackground.style.display = "none"
+        addProjectFormHolder.style.display = "none"
     } else if (!doesUserHaveProject) {
         addProjectAlert.innerText = "Project Does not exist"
     }

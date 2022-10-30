@@ -40,6 +40,6 @@ body {
 nav{
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 20px 40px;
     background-color: #4586be;
 }

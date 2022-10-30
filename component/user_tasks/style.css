@@ -1,7 +1,17 @@
 * {
     margin: 0px;
 }
-
+#new-form-background{
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    opacity: 0.5;
+    display: none;
+}
 #list-of-tasks{
     display: flex;
     justify-content: center;
