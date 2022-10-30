@@ -29,7 +29,7 @@
     width: 100%;
     z-index: 1;
     opacity: 0.5;
-    /* display:none; */
+    display:none;
 }
 #new-project-form-holder {
     display: none;
@@ -48,7 +48,7 @@
 }
 
 #add-project-form-holder {
-    /* display: none; */
+    display: none;
     position: absolute;
     width: 420px;
     padding: 20px 20px;

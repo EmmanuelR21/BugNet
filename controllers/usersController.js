@@ -25,7 +25,13 @@ const addUserInfo = async (request, response) => {
 
     return response.send(post.rows)
 }
-
+const addNewUser = async (request, response) => { 
+    let newUserId = await User.getMacUserIdDb()
+    console.log(newUserId.rows[0].max + 1)
+    let newUserInfo = request.body
+    let newUserData = await User.postUsernameAndPasswordToDb(newUserId.rows[0].max + 1, newUserInfo.name, newUserInfo.password)
+    return response.send(newUserData.rows)
+}
 const addProjectToUser = async (request, response) => {
     let project_id = request.body.project_id
     let user_id = request.body.user_id
@@ -36,5 +42,6 @@ module.exports = {
     grabAllUsernames,
     loginAuthentication,
     addUserInfo,
+    addNewUser,
     addProjectToUser
 }
