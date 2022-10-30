@@ -1,5 +1,6 @@
 const Project = require('../models/projectsModel.js');
 const Bugs = require('../models/bugsModel.js');
+const { response } = require('express');
 
 const grabBugs = async (request, response) => {
     response.status(200)
@@ -22,7 +23,7 @@ const postBug = async (request, response) => {
     //const projectId = await Project.grabIdOfProjectFromDb(postData.projectName)
     let newId = await Bugs.grabLatestIdFromDb()
     newId = +newId.rows[0].max + 1
-    const post = await Bugs.postBugInfoToDb(newId, postData.projectId, postData.title, postData.description, postData.code)
+    const post = await Bugs.postBugInfoToDb(newId, postData.user_id, postData.projectId, postData.title, postData.description, postData.code)
 
     return response.send(post.rows)
 }
@@ -35,9 +36,18 @@ const updateFeedback = async (request, response) => {
     return response.send(feedback.rows)
 }
 
+const grabBugsOfUser = (request, response) => {
+    response.status(200)
+    const userId = request.params.id
+    const bug = await Bugs.grabBugsOfSpecificUserFromDb(userId.id);
+
+    return response.send(bug.rows)
+}
+
 module.exports = {
     grabBugs,
     grabBugInfo,
     postBug,
-    updateFeedback
+    updateFeedback,
+    grabBugsOfUser
 }
