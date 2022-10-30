@@ -53,7 +53,7 @@ logInForm.addEventListener("submit", (e) => {
     }
     console.log(logInForm[0].value, logInForm[1].value)
     
-    fetch(`http://localhost:5432/users/${logInForm[0].value}/${logInForm[1].value}`)
+    fetch(`https://evening-plains-57425.herokuapp.com/users/${logInForm[0].value}/${logInForm[1].value}`)
         .then(response => response.json())
         .then(result => {
             if (result.alert === "invalid log in") {

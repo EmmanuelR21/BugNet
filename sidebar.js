@@ -22,7 +22,7 @@ function openNav() {
 }
 
 async function pullProjects() {
-    const response = await fetch(`http://localhost:5432/projects/1`)
+    const response = await fetch(`https://evening-plains-57425.herokuapp.com/projects/1`)
     const json = await response.json()
     const thingy = document.createElement('div')
     thingy.innerText = json[0].name

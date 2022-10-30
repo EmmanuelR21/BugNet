@@ -46,7 +46,7 @@ newTaskForm.addEventListener("submit", (e) => {
 })
 
 async function getAllUserTasks() {
-    let userTasks = await fetch(`http://localhost:5432/bugs/user/${localStorage.getItem("userid")}`).then(response => response.json())
+    let userTasks = await fetch(`https://evening-plains-57425.herokuapp.com/bugs/user/${localStorage.getItem("userid")}`).then(response => response.json())
     console.log(userTasks)
     for (task of userTasks) {
         let taskDiv = document.createElement("div");
