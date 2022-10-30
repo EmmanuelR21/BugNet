@@ -13,6 +13,12 @@ logOutButton.addEventListener("click", () => {
     localStorage.setItem("logedin", false);
     location.replace("../../index.html")
 })
+
+let closeIndividualTask = document.getElementById("close-individual-task-form")
+closeIndividualTask.addEventListener("click", () => {
+    individualTasks.style.display = "none"
+    newTaskFormBackground.style.display = "none"
+})
 let closeAddTaskForm = document.getElementById("close-add-task-form")
 closeAddTaskForm.addEventListener("click", () => {
     newTaskFormBackground.style.display = "none"
@@ -22,6 +28,7 @@ let getNewTaskForm = document.getElementById("get-add-task-form")
 let newTaskFormBackground = document.getElementById("new-form-background")
 let newTaskFormHolder = document.getElementById("new-task-form-holder")
 let newTaskForm = document.getElementById("new-task-form")
+let individualTasks = document.getElementById("individual-tasks")
 
 let bugTaskTable = document.getElementById("bug-task")
 let taskInReview = document.getElementById("task-in-review")
@@ -46,10 +53,11 @@ async function getAllUserTasks() {
         let taskTitle = document.createElement("h1");
         taskTitle.innerText = task.title;
         taskDiv.append(taskTitle)
+        taskDiv.classList.add("cursor-pointer")
 
         taskDiv.addEventListener("click", async () => {
-            //popup stuff hahahahaa
             newTaskFormBackground.style.display = "block"
+            individualTasks.style.display = "block"
         })
 
         if (task.status === "todo") {

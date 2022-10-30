@@ -53,15 +53,26 @@
             <div id="task-in-review" class="task-list">
                 <h1 class="task-completion-level">Tasks in Review</h1>
             </div>
-
             <div id="task-completed" class="task-list">
                 <h1 class="task-completion-level">Tasks Completed</h1>
             </div>
         </div>
 
-        <div>
-
+        <div id="individual-tasks">
+            <p id="close-individual-task-form" class="cursor-pointer">x</p>
+            <form id="individual-task">
+                <p>ISSUE TITLE</p>
+                <p>description</p>
+                <textarea maxlength="600" form="individual-task-form" id="individual-task-description"></textarea>
+                <br>
+                <p>Code:</p>
+                <textarea form="individual-task-form" id="individual-task-code"></textarea>
+                <br>
+                <input type="submit">
+            </form>
         </div>
+    </div>
+
     </div>
     <script src="./script.js"></script>
     <script src="../../nav.js"></script>
