@@ -53,9 +53,9 @@ async function getAllUserTasks() {
         let taskTitle = document.createElement("h1");
         taskTitle.innerText = task.title;
         taskDiv.append(taskTitle)
+        taskDiv.classList.add("cursor-pointer")
 
         taskDiv.addEventListener("click", async () => {
-            //popup stuff hahahahaa
             newTaskFormBackground.style.display = "block"
             individualTasks.style.display = "block"
         })
