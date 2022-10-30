@@ -21,9 +21,9 @@ closeAddTaskForm.addEventListener("click", () => {
 let getNewTaskForm = document.getElementById("get-add-task-form")
 let newTaskFormBackground = document.getElementById("new-form-background")
 let newTaskFormHolder = document.getElementById("new-task-form-holder")
-
 let newTaskForm = document.getElementById("new-task-form")
 
+let bugTaskTable = document.getElementById("bug-task")
 getNewTaskForm.addEventListener('click', (e) => {
     newTaskFormBackground.style.display = "block"
     newTaskFormHolder.style.display = "block"
@@ -35,6 +35,13 @@ newTaskForm.addEventListener("submit", (e) => {
 })
 
 async function getAllUserTasks() { 
-    console.log('hi')
+    let userTasks = await fetch("http://localhost:5432/bugs/user/1").then(response => response.json())
+    for (task of userTasks) {
+        if (task.status = "todo") { 
+            console.table(task)
+            let taskDiv = document.createElement("div");
+            // let 
+        }
+    }
 }
 getAllUserTasks()

@@ -22,7 +22,7 @@ class Bugs {
     }
 
     static grabBugsOfSpecificUserFromDb(userId) {
-        return pool.query('SELECT * FROM bugs WHERE user_id = $1 RETURNING *', [userId])
+        return pool.query('SELECT * FROM bugs WHERE user_id = $1', [userId])
     }
 }
 
