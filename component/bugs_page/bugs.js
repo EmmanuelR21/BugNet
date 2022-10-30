@@ -4,8 +4,6 @@ const bugsDiv = document.querySelector('.bugs')
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', pullBugs)
-closeSideBar.addEventListener("click", closeNav)
-openSideBar.addEventListener("click", openNav)
 querrybtn.addEventListener("click", pullBugs)
 // Functions
 

@@ -14,7 +14,7 @@ class Bugs {
     }
 
     static postBugInfoToDb(bug_id, user_id, project_Id, title, description, code) {
-        return pool.query("INSERT INTO bugs (bug_id, user_id, project_id, title, description, code, status ) VALUES ($1, $2, $3, $4, $5, $6 'todo') RETURNING *", [bug_id, user_id, project_Id, title, description, code])
+        return pool.query("INSERT INTO bugs (bug_id, user_id, project_id, title, description, code, status ) VALUES ($1, $2, $3, $4, $5, $6,'todo') RETURNING *", [bug_id, user_id, project_Id, title, description, code])
     }
 
     static updateBugFeedbackInfoToDb(bugCodeFeedback, bugCommentFeedback, bugDescription) {

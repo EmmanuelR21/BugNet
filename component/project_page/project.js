@@ -56,7 +56,8 @@ newProjectForm.addEventListener("submit", (e) => {
 })
 addProjectForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    addProject(newProjectForm[0].value)
+    console.log(addProjectForm[0].value)
+    addProject(addProjectForm[0].value)
 })
 
 async function creatNewProject(newProjectName, newProjectDescription) { 
@@ -102,26 +103,64 @@ async function creatNewProject(newProjectName, newProjectDescription) {
 }
 
 async function addProject(newProjectName) {
-    let doesUserHaveProject = false
-    let tasks = await fetch(`http://localhost:5432/projects/${localStorage.getItem("userid")}`).then(response => response.json())
-    for (let getProject of tasks) { 
+    let doesUserHaveProject = false;
+    let addProjectId;
+    let addProjectDescription;
+    let userProjects = await fetch(`http://localhost:5432/projects/${localStorage.getItem("userid")}`).then(response => response.json())
+    for (let getProject of userProjects) {
         if (getProject.name === newProjectName) {
             doesUserHaveProject = true
             addProjectAlert.innerText = "You have this Project"
+            return addProjectAlert.innerText
+
         }
-    }
-    for (obj of tasks) {
-        if (obj.name === newProjectName) doesProjectExist = true
     }
     let doesProjectExist = false
     let projects = await fetch("http://localhost:5432/projects/")
         .then(response => response.json())
         .then(result => result)
-    for (obj of tasks) {
-        if (obj.name === newProjectName) doesProjectExist = true
+    for (obj of projects) {
+        if (obj.name === newProjectName) {
+            doesProjectExist = true
+            addProjectDescription = obj.description
+            addProjectId = obj.project_id
+        }
     }
     if (!doesUserHaveProject && doesProjectExist) {
-        addProjectAlert.innerText = "Project added"
+        console.log(addProjectId, localStorage.getItem("userid"))
+        addProjectAlert.innerText = "Project added";
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "project_id": addProjectId,
+            "user_id": +localStorage.getItem("userid")
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:5432/users/project", requestOptions)
+        // addProjectDescription
+        let projectMainDiv = document.createElement("div")
+        let projectName = document.createElement("p")
+        let projectDescription = document.createElement("p")
+        projectName.innerText = newProjectName
+        projectDescription.innerText = addProjectDescription
+        projectMainDiv.classList.add("projectBoxs", "cursor-pointer")
+        projectMainDiv.append(projectName, projectDescription)
+        projectMainDiv.addEventListener("click", () => {
+            localStorage.setItem("currentProjectid", newProjectName);
+            console.log(localStorage.getItem("currentProjectid"))
+            location.replace("../bugs_page/bugs.html")
+        })
+        projectsHolder.append(projectMainDiv)
+
     } else if (!doesUserHaveProject) { 
         addProjectAlert.innerText = "Project Does not exist"
     }

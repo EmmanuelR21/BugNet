@@ -1,4 +1,3 @@
-const { checkPasswordForUsernameFromDb } = require('../models/usersModel.js')
 const User = require('../models/usersModel.js')
 
 const grabAllUsernames = async (req, rep) => {
@@ -27,8 +26,15 @@ const addUserInfo = async (request, response) => {
     return response.send(post.rows)
 }
 
+const addProjectToUser = async (request, response) => {
+    let project_id = request.body.project_id
+    let user_id = request.body.user_id
+    let newCollaboration = await User.addProjectToUserDb(project_id, user_id)
+    return response.send(newCollaboration.rows)
+}
 module.exports = {
     grabAllUsernames,
     loginAuthentication,
-    addUserInfo
+    addUserInfo,
+    addProjectToUser
 }

@@ -7,5 +7,6 @@ router.get("/users", usersController.grabAllUsernames)
 router.get("/:name/:password", usersController.loginAuthentication)
 
 router.post('/', usersController.addUserInfo)
+router.post('/project/', usersController.addProjectToUser)
 
 module.exports = router
