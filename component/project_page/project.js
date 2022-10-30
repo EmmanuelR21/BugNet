@@ -1,11 +1,11 @@
 let logedinusername = localStorage.getItem("logedinusername");
 let logedinpassword = localStorage.getItem("logedinpassword");
+let logedinId = localStorage.getItem("userid")
 let logedin = localStorage.getItem("logedin");
 if (logedin === "false") {
     location.replace("../../index.html")
 }
 let logOutButton = document.getElementById("log-out-button")
-
 logOutButton.addEventListener("click", () => {
     console.log(true)
     localStorage.setItem("logedinusername", null);
@@ -106,7 +106,7 @@ async function addProject(newProjectName) {
     let doesUserHaveProject = false;
     let addProjectId;
     let addProjectDescription;
-    let userProjects = await fetch(`http://localhost:5432/projects/${localStorage.getItem("userid")}`).then(response => response.json())
+    let userProjects = await fetch(`http://localhost:5432/projects/${logedinId}`).then(response => response.json())
     for (let getProject of userProjects) {
         if (getProject.name === newProjectName) {
             doesUserHaveProject = true
@@ -127,7 +127,7 @@ async function addProject(newProjectName) {
         }
     }
     if (!doesUserHaveProject && doesProjectExist) {
-        console.log(addProjectId, localStorage.getItem("userid"))
+        console.log(addProjectId, logedinId)
         addProjectAlert.innerText = "Project added";
 
         var myHeaders = new Headers();
@@ -135,7 +135,7 @@ async function addProject(newProjectName) {
 
         var raw = JSON.stringify({
             "project_id": addProjectId,
-            "user_id": +localStorage.getItem("userid")
+            "user_id": +logedinId
         });
 
         var requestOptions = {
@@ -172,7 +172,7 @@ async function pullProjects() {
         redirect: 'follow'
     };
 
-    let tasks = await fetch(`http://localhost:5432/projects/${localStorage.getItem("userid")}`, requestOptions).then(response => response.json())
+    let tasks = await fetch(`http://localhost:5432/projects/${logedinId}`, requestOptions).then(response => response.json())
     //console.log(tasks)
     for (let getProject of tasks ) { 
         // console.log(getProject)

@@ -74,24 +74,59 @@ logInForm.addEventListener("submit", (e) => {
 // submit signUp form
 signUpForm.addEventListener("submit", (e) => {
     e.preventDefault()
-    console.log('hi')
-    if (signUpForm[0].value.length === 0 && signUpForm[1].value.length === 0 && signUpForm[2].value.length) {
+    createAccount(signUpForm[0].value, signUpForm[1].value, signUpForm[2].value)
+})
+
+async function createAccount(newAccountName, newUserPasword, confirmNewUserPasword) { 
+    if (newAccountName.length === 0 && newUserPasword.length === 0 && confirmNewUserPasword.length) {
         loginSignupAlert.innerText = "Missing username and password";
         return false;
     }
-    if (signUpForm[0].value.length === 0) {
+    if (newAccountName.length === 0) {
         loginSignupAlert.innerText = "Missing username"
         return false;
     }
-    if (signUpForm[1].value.length === 0 || signUpForm[2].value.length === 0) {
+    if (newUserPasword.length === 0 || confirmNewUserPasword.length === 0) {
         loginSignupAlert.innerText = "missing password"
         return false;
     }
-    if (signUpForm[1].value.length !== signUpForm[2].value.length) {
+    if (newUserPasword.length !== confirmNewUserPasword.length) {
         loginSignupAlert.innerText = "password does not match"
         return false;
     }
-})
+    let wasNameTaken = false
+    let allUsersNames = await fetch("http://localhost:5432/users/users")
+        .then(response => response.json())
+        .then(result => result)
+    for (let usersNames of allUsersNames) { 
+        if (usersNames.username === newAccountName) { 
+            wasNameTaken = true
+            loginSignupAlert.innerText = "User Name Taken"
+            return false;
+        }
+    }
+    ////
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify({
+            "name": newAccountName,
+            "password": newUserPasword
+        }),
+        redirect: 'follow'
+    };
 
-
+    let userData = await fetch("http://localhost:5432/users/new_user", requestOptions)
+        .then(response => response.json())
+        .then(result => result[0])
+    console.log(userData)
+    loginSignupAlert.innerText = "loged in";
+    localStorage.setItem("logedinusername", newAccountName);
+    localStorage.setItem("logedinpassword", newUserPasword);
+    localStorage.setItem("userid", userData.user_id);
+    localStorage.setItem("logedin", true);
+    location.replace("./component/project_page/project.html");
+}

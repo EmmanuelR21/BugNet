@@ -19,6 +19,9 @@ class User {
     static addProjectToUserDb(project_id, user_id) { 
         return pool.query('INSERT INTO users_projects (project_id, user_id) VALUES ($1, $2) RETURNING *', [project_id, user_id])
     }
+    static getMacUserIdDb() { 
+        return pool.query('SELECT Max(user_id) FROM users')
+    }
 }
 
 module.exports = User;
