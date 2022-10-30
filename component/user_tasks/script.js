@@ -38,18 +38,25 @@ newTaskForm.addEventListener("submit", (e) => {
     console.log(newTaskForm[2].value)
 })
 
-async function getAllUserTasks() { 
+async function getAllUserTasks() {
     let userTasks = await fetch(`http://localhost:5432/bugs/user/${localStorage.getItem("userid")}`).then(response => response.json())
+    console.log(userTasks)
     for (task of userTasks) {
         let taskDiv = document.createElement("div");
         let taskTitle = document.createElement("h1");
         taskTitle.innerText = task.title;
         taskDiv.append(taskTitle)
+
+        taskDiv.addEventListener("click", async () => {
+            //popup stuff hahahahaa
+            newTaskFormBackground.style.display = "block"
+        })
+
         if (task.status === "todo") {
             bugTaskTable.append(taskDiv)
         } else if (task.status === "todo in review") {
             taskInReview.append(taskDiv)
-        } else if (task.status === "completed") { 
+        } else if (task.status === "completed") {
             taskCompleted.append(taskDiv)
         }
     }
