@@ -14,15 +14,13 @@ const formText = document.querySelector('#form-text')
 const formDescription = document.querySelector('#form-description')
 
 const postBugTitle = document.querySelector('#new-task-title')
-const postBugDesc = document.querySelector('#new-task-form')
+const postBugDesc = document.querySelector('#new-task-description')
 const postBugCode = document.querySelector('#new-task-code')
 const postBugBtn = document.querySelector('#new-task-button')
 
 if (logedin === "false") {
     location.replace("../../index.html")
 }
-
-//console.log(logedinusername, logedinpassword, logedinId, logedin, currentProject)
 
 // Event Listeners
 getNewTaskForm.addEventListener('click', (e) => {
@@ -49,14 +47,12 @@ closeIndividualTask.addEventListener("click", () => {
 
 postBugBtn.addEventListener("click", (e) => {
     e.preventDefault()
-    console.log('hi')
 
     var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
 var raw = JSON.stringify({
   "user_id": localStorage.userid,
-  "projectId": "1",
   "title": postBugTitle.value,
   "description": postBugDesc.value,
   "code": postBugCode.value
@@ -69,7 +65,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("http://localhost:5432/bugs/", requestOptions)
+fetch(`http://localhost:5432/bugs/${localStorage.currentProjectid}`, requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
