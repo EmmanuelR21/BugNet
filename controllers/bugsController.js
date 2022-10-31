@@ -5,7 +5,6 @@ const grabBugs = async (request, response) => {
     response.status(200)
     const projectName = request.params.projectName
     const ID = await Project.grabIdOfProjectFromDb(projectName)
-    console.log(ID)
     const bugs = await Bugs.grabAllBugsFromDb(ID.rows[0].project_id)
     return response.send(bugs.rows);
 }
@@ -20,11 +19,10 @@ const grabBugInfo = async (request, response) => {
 const postBug = async (request, response) => {
     response.status(200)
     const postData = request.body
-    //const projectId = await Project.grabIdOfProjectFromDb(postData.projectName)
     let newId = await Bugs.grabLatestIdFromDb()
     let projectId = await Project.grabIdOfProjectFromDb(request.params.projectName)
     newId = +newId.rows[0].max + 1
-    const post = await Bugs.postBugInfoToDb(newId, postData.user_id, projectId.rows, postData.title, postData.description, postData.code)
+    const post = await Bugs.postBugInfoToDb(newId, postData.user_id, +projectId.rows[0].project_id, postData.title, postData.description, postData.code)
 
     return response.send(post.rows)
 }
@@ -47,7 +45,6 @@ const grabBugsOfUser = async (request, response) => {
 const updateBugStatus = async (request, response) => {
     const newStatus = request.body.status
     const bugId = request.params.id
-    console.log(bugId, newStatus)
     const bug = await Bugs.updateBugStatusDb(bugId, newStatus);
     return response.send(bug.rows);
 }
