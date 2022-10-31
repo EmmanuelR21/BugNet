@@ -29,6 +29,9 @@ let newTaskFormBackground = document.getElementById("new-form-background")
 let newTaskFormHolder = document.getElementById("new-task-form-holder")
 let newTaskForm = document.getElementById("new-task-form")
 let individualTasks = document.getElementById("individual-tasks")
+let updateBug = document.getElementById("submit-updated-bug")
+let taskDescription = document.getElementById("individual-task-description")
+let taskCode = document.getElementById("individual-task-code")
 
 let bugTaskTable = document.getElementById("bug-task")
 let taskInReview = document.getElementById("task-in-review")
@@ -43,6 +46,32 @@ getNewTaskForm.addEventListener('click', (e) => {
 newTaskForm.addEventListener("submit", (e) => {
     e.preventDefault()
     console.log(newTaskForm[2].value)
+})
+
+updateBug.addEventListener('click', async (e) => {
+    e.preventDefault()
+    const newDescription = taskDescription.value
+    const newCode = taskCode.value
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "description": newDescription,
+        "code": newCode
+    });
+
+    var requestOptions = {
+        method: 'PATCH',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    await fetch("https://localhost:5432/bugs/descriptionAndCode", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
 })
 
 async function getAllUserTasks() {
