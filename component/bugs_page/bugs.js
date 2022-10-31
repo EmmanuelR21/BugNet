@@ -12,6 +12,10 @@ let individualTasks = document.getElementById("individual-tasks")
 let closeIndividualTask = document.getElementById("close-individual-task-form")
 const formText = document.querySelector('#form-text')
 const formDescription = document.querySelector('#form-description')
+const postBugBtn = document.querySelector('#post-bug-btn')
+const postBugTitle = document.querySelector('#new-bug-title')
+const postBugDesc = document.querySelector('#new-bug-description')
+const postBugCode = document.querySelector('#new-bug-code')
 
 if (logedin === "false") {
     location.replace("../../index.html")
@@ -40,6 +44,31 @@ logOutButton.addEventListener("click", () => {
 closeIndividualTask.addEventListener("click", () => {
     individualTasks.style.display = "none"
     newTaskFormBackground.style.display = "none"
+})
+
+postBugBtn.addEventListener("click", (e) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+        "user_id": localStorage.user_id,
+        "projectId": localStorage.projectId,
+        "title": postBugTitle.value,
+        "description": postBugDesc.value,
+        "code": postBugCode.value
+    });
+
+    const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("https://evening-plains-57425.herokuapp.com/bugs/", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
 })
 
 // Functions
