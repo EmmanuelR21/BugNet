@@ -61,7 +61,9 @@ addProjectForm.addEventListener("submit", (e) => {
 
 async function creatNewProject(newProjectName, newProjectDescription) {
     let doesProjectExist = false
-    let tasks = await fetch("http://localhost:5432/projects").then(response => response.json()).then(result => result)
+    
+    let tasks = await fetch("http://localhost:5432/projects/").then(response => response.json()).then(result => result)
+
     for (obj of tasks) if (obj.name === newProjectName) doesProjectExist = true;
 
     if (!doesProjectExist) {
@@ -74,7 +76,7 @@ async function creatNewProject(newProjectName, newProjectDescription) {
             body: JSON.stringify({ "name": newProjectName, "description": newProjectDescription }),
             redirect: 'follow'
         };
-        let newProject = await fetch("https://localhost:5432/projects/", createProjectRequest).then(response => response.json()).then(result => result[0])
+        let newProject = await fetch("http://localhost:5432/projects/", createProjectRequest).then(response => response.json()).then(result => result[0])
         let addProjectId = newProject.project_id
         let projectMainDiv = document.createElement("div");
         let projectName = document.createElement("p");
@@ -98,7 +100,7 @@ async function creatNewProject(newProjectName, newProjectDescription) {
             redirect: 'follow'
         };
 
-        await fetch("https://localhost:5432/users/project", requestOptions)
+        await fetch("http://localhost:5432/users/project", requestOptions)
         projectsHolder.append(projectMainDiv)
         newFormBackground.style.display = "none"
         newProjectFormHolder.style.display = "none"
@@ -111,7 +113,7 @@ async function addProject(newProjectName) {
     let doesUserHaveProject = false;
     let addProjectId;
     let addProjectDescription;
-    let userProjects = await fetch(`https://evening-plains-57425.herokuapp.com/projects/${logedinId}`).then(response => response.json())
+    let userProjects = await fetch(`http://localhost:5432/projects/${logedinId}`).then(response => response.json())
     for (let getProject of userProjects) {
         if (getProject.name === newProjectName) {
             doesUserHaveProject = true
@@ -120,7 +122,7 @@ async function addProject(newProjectName) {
         }
     }
     let doesProjectExist = false
-    let projects = await fetch("https://evening-plains-57425.herokuapp.com/projects/").then(response => response.json()).then(result => result)
+    let projects = await fetch("http://localhost:5432/projects/").then(response => response.json()).then(result => result)
     for (obj of projects) {
         if (obj.name === newProjectName) {
             doesProjectExist = true
@@ -141,7 +143,7 @@ async function addProject(newProjectName) {
             redirect: 'follow'
         };
 
-        await fetch("https://evening-plains-57425.herokuapp.com/users/project", requestJoinUserToProject)
+        await fetch("http://localhost:5432/users/project", requestJoinUserToProject)
         let projectMainDiv = document.createElement("div")
         let projectName = document.createElement("p")
         let projectDescription = document.createElement("p")
@@ -162,7 +164,7 @@ async function addProject(newProjectName) {
 }
 // Functions
 async function pullProjects() {
-    let tasks = await fetch(`https://evening-plains-57425.herokuapp.com/projects/${logedinId}`).then(response => response.json())
+    let tasks = await fetch(`http://localhost:5432/projects/${logedinId}`).then(response => response.json())
     for (let getProject of tasks) {
         let projectMainDiv = document.createElement("div")
         let projectName = document.createElement("p")

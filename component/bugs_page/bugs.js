@@ -9,15 +9,17 @@ let newTaskFormHolder = document.getElementById("new-task-form-holder")
 let closeAddTaskForm = document.getElementById("close-add-task-form")
 let logOutButton = document.getElementById("log-out-button")
 let individualTasks = document.getElementById("individual-tasks")
+let taskDescription = document.getElementById("individual-task-description")
+let taskCode = document.getElementById("individual-task-code")
 let closeIndividualTask = document.getElementById("close-individual-task-form")
 const formText = document.querySelector('#form-text')
 const formDescription = document.querySelector('#form-description')
-
 const postBugTitle = document.querySelector('#new-task-title')
 const postBugDesc = document.querySelector('#new-task-description')
 const postBugCode = document.querySelector('#new-task-code')
 const postBugBtn = document.querySelector('#new-task-button')
 const bugStatusUpdate = document.querySelector("bug-status-update")
+const bugCode = document.querySelector('#form-code')
 
 let updateTaskForm = document.getElementById("individual-task-form")
 let statusLevle = document.getElementById("bug-status-update")
@@ -99,7 +101,7 @@ postBugBtn.addEventListener("click", async (e) => {
         "description": postBugDesc.value,
         "code": postBugCode.value
     });
-    
+
     let requestOptions = {
         method: 'POST',
         headers: myHeaders,
@@ -141,8 +143,9 @@ async function pullBugs() {
             individualTasks.style.display = "block"
             currentBugId = bugs.bug_id;
             statusLevle.value = bugs.status;
-            updateTaskForm[0].value = bugs.feedback || ""
-            updateTaskForm[1].value = bugs.code_feedback || ""
+            bugCode.innerText = bugs.code
+            taskDescription.defaultValue = bugs.feedback || ""
+            taskCode.defaultValue = bugs.code_feedback || ""
         })
         switch (bugs.status) {
             case 'review':

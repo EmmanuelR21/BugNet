@@ -11,6 +11,6 @@ exports.seed = async function (knex) {
     { project_id: 3, name: 'Scarab', description: 'Archeoloy project'},
     { project_id: 4, name: 'spaceX', description: 'interloper'},
     { project_id: 5, name: 'butterfly', description: 'evolution project'},
-    { project_id: 6, name: 'python', description: 'private python community'},
+    { project_id: 6, name: 'javascript', description: 'Community to learn and teach JS!'},
   ]);
 };
