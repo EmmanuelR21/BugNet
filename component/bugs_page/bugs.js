@@ -44,7 +44,7 @@ closeIndividualTask.addEventListener("click", () => {
 
 // Functions
 async function pullBugs() {
-    const response = await fetch(`https://evening-plains-57425.herokuapp.com/bugs/${localStorage.getItem("currentProjectid")}`)
+    const response = await fetch(`https://localhost:5432/bugs/${localStorage.getItem("currentProjectid")}`)
     const json = await response.json()
     for (const bugs of json) {
         const div = document.createElement('div')

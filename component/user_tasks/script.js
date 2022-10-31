@@ -68,14 +68,14 @@ updateBug.addEventListener('click', async (e) => {
         redirect: 'follow'
     };
 
-    await fetch("https://evening-plains-57425.herokuapp.com/bugs/descriptionAndCode", requestOptions)
+    await fetch("https://localhost:5432/bugs/descriptionAndCode", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
 })
 
 async function getAllUserTasks() {
-    let userTasks = await fetch(`https://evening-plains-57425.herokuapp.com/bugs/user/${localStorage.getItem("userid")}`).then(response => response.json())
+    let userTasks = await fetch(`https://localhost:5432/bugs/user/${localStorage.getItem("userid")}`).then(response => response.json())
     console.log(userTasks)
     for (task of userTasks) {
         let taskDiv = document.createElement("div");
