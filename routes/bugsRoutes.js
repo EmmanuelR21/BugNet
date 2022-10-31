@@ -6,7 +6,7 @@ router.get('/:projectName', bugController.grabBugs)
 
 router.get('/user/:id', bugController.grabBugsOfUser)
 
-router.post('/', bugController.postBug)
+router.post('/:projectName', bugController.postBug)
 
 router.patch('/descriptionAndCode', bugController.updateCodeAndDescription)
 
