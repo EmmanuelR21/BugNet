@@ -52,7 +52,6 @@ postBugBtn.addEventListener("click", (e) => {
 
     const raw = JSON.stringify({
         "user_id": localStorage.user_id,
-        "projectId": localStorage.projectId,
         "title": postBugTitle.value,
         "description": postBugDesc.value,
         "code": postBugCode.value
@@ -65,7 +64,7 @@ postBugBtn.addEventListener("click", (e) => {
         redirect: 'follow'
     };
 
-    fetch("https://evening-plains-57425.herokuapp.com/bugs/", requestOptions)
+    fetch(`https://evening-plains-57425.herokuapp.com/bugs/${localStorage.currentProjectid}`, requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
