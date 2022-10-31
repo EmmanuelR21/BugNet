@@ -75,7 +75,7 @@ updateBug.addEventListener('click', async (e) => {
 })
 
 async function getAllUserTasks() {
-    let userTasks = await fetch(`https://localhost:5432/bugs/user/${localStorage.getItem("userid")}`).then(response => response.json())
+    let userTasks = await fetch(`http://localhost:5432/bugs/user/${localStorage.getItem("userid")}`).then(response => response.json())
     console.log(userTasks)
     for (task of userTasks) {
         let taskDiv = document.createElement("div");
@@ -87,6 +87,9 @@ async function getAllUserTasks() {
         taskDiv.addEventListener("click", async () => {
             newTaskFormBackground.style.display = "block"
             individualTasks.style.display = "block"
+
+            taskDescription.defaultValue = task.description
+            taskCode.defaultValue = task.code
         })
 
         if (task.status === "todo") {
