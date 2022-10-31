@@ -10,7 +10,7 @@ router.post('/:projectName', bugController.postBug)
 
 router.patch('/descriptionAndCode', bugController.updateCodeAndDescription)
 
-router.patch('/feedback', bugController.updateFeedback)
+router.patch('/feedback/:id', bugController.updateFeedback)
 
 router.patch('/status/:id', bugController.updateBugStatus)
 

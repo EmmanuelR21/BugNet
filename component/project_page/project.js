@@ -51,6 +51,7 @@ closeAddProjectForm.addEventListener('click', () => {
 })
 newProjectForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    console.log(newProjectForm[0].value, newProjectForm[1].value)
     creatNewProject(newProjectForm[0].value, newProjectForm[1].value)
 })
 addProjectForm.addEventListener("submit", (e) => {
@@ -60,7 +61,7 @@ addProjectForm.addEventListener("submit", (e) => {
 
 async function creatNewProject(newProjectName, newProjectDescription) {
     let doesProjectExist = false
-    let tasks = await fetch("https://localhost:5432/projects/").then(response => response.json()).then(result => result)
+    let tasks = await fetch("http://localhost:5432/projects").then(response => response.json()).then(result => result)
     for (obj of tasks) if (obj.name === newProjectName) doesProjectExist = true;
 
     if (!doesProjectExist) {
