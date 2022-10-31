@@ -45,7 +45,7 @@ closeIndividualTask.addEventListener("click", () => {
     individualTasks.style.display = "none"
     newTaskFormBackground.style.display = "none"
 })
-
+/*
 postBugBtn.addEventListener("click", (e) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -64,11 +64,12 @@ postBugBtn.addEventListener("click", (e) => {
         redirect: 'follow'
     };
 
-    fetch(`https://evening-plains-57425.herokuapp.com/bugs/${localStorage.currentProjectid}`, requestOptions)
+    fetch(`https://localhost:5432/bugs/${localStorage.currentProjectid}`, requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
 })
+*/
 
 // Functions
 async function pullBugs() {
