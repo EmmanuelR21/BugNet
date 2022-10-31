@@ -9,6 +9,8 @@ let newTaskFormHolder = document.getElementById("new-task-form-holder")
 let closeAddTaskForm = document.getElementById("close-add-task-form")
 let logOutButton = document.getElementById("log-out-button")
 let individualTasks = document.getElementById("individual-tasks")
+let taskDescription = document.getElementById("individual-task-description")
+let taskCode = document.getElementById("individual-task-code")
 let closeIndividualTask = document.getElementById("close-individual-task-form")
 const formText = document.querySelector('#form-text')
 const formDescription = document.querySelector('#form-description')
@@ -65,8 +67,8 @@ updateTaskForm.addEventListener("submit", (e) => {
 
     fetch(`http://localhost:5432/bugs/status/${currentBugId}`, requestOptions)
         .then(response => response.text())
-    
- })
+
+})
 
 postBugBtn.addEventListener("click", (e) => {
     e.preventDefault()
@@ -79,7 +81,7 @@ postBugBtn.addEventListener("click", (e) => {
         "description": postBugDesc.value,
         "code": postBugCode.value
     });
-    
+
     let requestOptions = {
         method: 'POST',
         headers: myHeaders,
@@ -109,6 +111,8 @@ async function pullBugs() {
             currentBugId = bugs.bug_id;
             statusLevle.value = bugs.status;
             bugCode.innerText = bugs.code
+            taskDescription.defaultValue = bugs.feedback || ""
+            taskCode.defaultValue = bugs.code_feedback || ""
         })
         switch (bugs.status) {
             case 'review':
