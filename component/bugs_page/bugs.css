@@ -105,3 +105,13 @@
 #bug-task div h1 {
     font-size: 20px;
 }
+
+#individual-tasks {
+    display: none;
+    position: absolute;
+    width: 420px;
+    padding: 20px 20px;
+    left: calc(50% - 210px);
+    background-color: red;
+    z-index: 2;
+}

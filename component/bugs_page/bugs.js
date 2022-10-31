@@ -8,6 +8,10 @@ let newTaskFormBackground = document.getElementById("new-form-background")
 let newTaskFormHolder = document.getElementById("new-task-form-holder")
 let closeAddTaskForm = document.getElementById("close-add-task-form")
 let logOutButton = document.getElementById("log-out-button")
+let individualTasks = document.getElementById("individual-tasks")
+let closeIndividualTask = document.getElementById("close-individual-task-form")
+const formText = document.querySelector('#form-text')
+const formDescription = document.querySelector('#form-description')
 
 if (logedin === "false") {
     location.replace("../../index.html")
@@ -19,7 +23,6 @@ if (logedin === "false") {
 getNewTaskForm.addEventListener('click', (e) => {
     newTaskFormBackground.style.display = "block"
     newTaskFormHolder.style.display = "block"
-    console.log('ji')
 })
 
 closeAddTaskForm.addEventListener("click", () => {
@@ -34,6 +37,11 @@ logOutButton.addEventListener("click", () => {
     location.replace("../../index.html")
 })
 
+closeIndividualTask.addEventListener("click", () => {
+    individualTasks.style.display = "none"
+    newTaskFormBackground.style.display = "none"
+})
+
 // Functions
 async function pullBugs() {
     const response = await fetch(`https://evening-plains-57425.herokuapp.com/bugs/${localStorage.getItem("currentProjectid")}`)
@@ -41,12 +49,18 @@ async function pullBugs() {
     for (const bugs of json) {
         const div = document.createElement('div')
         div.innerText = bugs.title
+        div.addEventListener("click", async () => {
+            formText.innerText = bugs.title
+            formDescription.innerText = bugs.description
+            newTaskFormBackground.style.display = "block"
+            individualTasks.style.display = "block"
+        })
         switch (bugs.status) {
             case 'review':
-                document.querySelector('#review').append((document.createElement('div').innerText = bugs.title))
+                document.querySelector('#review').append(div)
                 break
             case 'completed':
-                document.querySelector('#completed').append(document.createElement('div').innerText = bugs.title)
+                document.querySelector('#completed').append(div)
                 break
             default:
                 document.querySelector('#todo').append(div)
@@ -56,4 +70,5 @@ async function pullBugs() {
 }
 
 document.querySelector('#current-project').innerText = localStorage.currentProjectid
+
 pullBugs()
