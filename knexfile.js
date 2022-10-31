@@ -9,8 +9,8 @@ module.exports = {
     client: 'pg',
     connection: {
       database: 'BugNet',
-      user: 'aaronminaya0',
-      password: 'Pwmf22gu.'
+      user: 'emmanuel',
+      password: '2413'
     },
   },
 
