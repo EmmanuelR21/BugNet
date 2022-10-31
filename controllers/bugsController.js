@@ -30,7 +30,8 @@ const postBug = async (request, response) => {
 const updateFeedback = async (request, response) => {
     response.status(200)
     const feedbackInfo = request.body
-    const feedback = await Bugs.updateBugFeedbackInfoToDb(feedbackInfo.codeFeedback, feedbackInfo.commentFeedback, feedbackInfo.bugDescription)
+    const bugId  =  request.params.id
+    const feedback = await Bugs.updateBugFeedbackInfoToDb(feedbackInfo.codeFeedback, feedbackInfo.commentFeedback, feedbackInfo.bugDescription, bugId)
 
     return response.send(feedback.rows)
 }

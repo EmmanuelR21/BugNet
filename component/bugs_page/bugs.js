@@ -21,7 +21,7 @@ const postBugBtn = document.querySelector('#new-task-button')
 const bugStatusUpdate = document.querySelector("bug-status-update")
 const bugCode = document.querySelector('#form-code')
 
-let updateTaskForm = document.getElementById("individual-task")
+let updateTaskForm = document.getElementById("individual-task-form")
 let statusLevle = document.getElementById("bug-status-update")
 let currentBugId;
 if (logedin === "false") {
@@ -50,27 +50,47 @@ closeIndividualTask.addEventListener("click", () => {
     individualTasks.style.display = "none"
     newTaskFormBackground.style.display = "none"
 })
-updateTaskForm.addEventListener("submit", (e) => {
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+updateTaskForm.addEventListener("submit", async (e) => {
+    e.preventDefault()
+    let myHeadersa = new Headers();
+    myHeadersa.append("Content-Type", "application/json");
 
-    let raw = JSON.stringify({
+    let rawa = JSON.stringify({
         "status": statusLevle.value
     });
 
-    let requestOptions = {
+    let requestOptionss = {
+        method: 'PATCH',
+        headers: myHeadersa,
+        body: rawa,
+        redirect: 'follow'
+    };
+
+    let newBugData = fetch(`http://localhost:5432/bugs/status/${currentBugId}`, requestOptionss)
+        .then(response => response.json())
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "codeFeedback": updateTaskForm[0].value,
+        "commentFeedback": updateTaskForm[1].value,
+        "bugDescription": "aaaaaaaaaaaaaaaaaaaaaaa"
+    });
+
+    var requestOptions = {
         method: 'PATCH',
         headers: myHeaders,
         body: raw,
         redirect: 'follow'
     };
 
-    fetch(`http://localhost:5432/bugs/status/${currentBugId}`, requestOptions)
-        .then(response => response.text())
+    fetch(`http://localhost:5432/bugs/feedback/${currentBugId}`, requestOptions)
+        .then(response => response.json())
+        .then(result => result)
+    location.replace("../bugs_page/bugs.html")
+ })
 
-})
-
-postBugBtn.addEventListener("click", (e) => {
+postBugBtn.addEventListener("click", async (e) => {
     e.preventDefault()
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -89,11 +109,23 @@ postBugBtn.addEventListener("click", (e) => {
         redirect: 'follow'
     };
 
-    fetch(`http://localhost:5432/bugs/${localStorage.currentProjectid}`, requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+    let newBugData = await fetch(`http://localhost:5432/bugs/${localStorage.currentProjectid}`, requestOptions)
+        .then(response => response.json())
+        .then(result => result[0])
+    newTaskFormHolder.style.display = "none"
+    newTaskFormBackground.style.display = "none"
 
+    const div = document.createElement('div')
+    div.innerText = newBugData.title
+    div.addEventListener("click", async () => {
+        formText.innerText = newBugData.title
+        formDescription.innerText = newBugData.description
+        newTaskFormBackground.style.display = "block"
+        individualTasks.style.display = "block"
+        currentBugId = newBugData.bug_id;
+        statusLevle.value = newBugData.status;
+    })
+    document.querySelector('#todo').append(div)
 })
 
 // Functions
@@ -104,6 +136,7 @@ async function pullBugs() {
         const div = document.createElement('div')
         div.innerText = bugs.title
         div.addEventListener("click", async () => {
+            console.table(bugs)
             formText.innerText = bugs.title
             formDescription.innerText = bugs.description
             newTaskFormBackground.style.display = "block"
