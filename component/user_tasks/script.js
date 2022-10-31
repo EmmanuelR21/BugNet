@@ -68,7 +68,7 @@ updateBug.addEventListener('click', async (e) => {
         redirect: 'follow'
     };
 
-    await fetch("https://localhost:5432/bugs/descriptionAndCode", requestOptions)
+    await fetch("https://evening-plains-57425.herokuapp.com/bugs/descriptionAndCode", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
