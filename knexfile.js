@@ -13,7 +13,7 @@ module.exports = {
       password: 'Pwmf22gu.'
     },
   },
-  
+
   production: {
     client: 'pg',
     connection: process.env.DATABASE_URL
