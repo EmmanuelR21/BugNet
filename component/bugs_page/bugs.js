@@ -12,12 +12,12 @@ let individualTasks = document.getElementById("individual-tasks")
 let closeIndividualTask = document.getElementById("close-individual-task-form")
 const formText = document.querySelector('#form-text')
 const formDescription = document.querySelector('#form-description')
-
 const postBugTitle = document.querySelector('#new-task-title')
 const postBugDesc = document.querySelector('#new-task-description')
 const postBugCode = document.querySelector('#new-task-code')
 const postBugBtn = document.querySelector('#new-task-button')
 const bugStatusUpdate = document.querySelector("bug-status-update")
+const bugCode = document.querySelector('#form-code')
 
 let updateTaskForm = document.getElementById("individual-task")
 let statusLevle = document.getElementById("bug-status-update")
@@ -108,6 +108,7 @@ async function pullBugs() {
             individualTasks.style.display = "block"
             currentBugId = bugs.bug_id;
             statusLevle.value = bugs.status;
+            bugCode.innerText = bugs.code
         })
         switch (bugs.status) {
             case 'review':

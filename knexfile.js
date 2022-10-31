@@ -8,9 +8,9 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      database: 'todo-list',
-      user: 'aldair',
-      password: 'a'
+      database: 'BugNet',
+      user: 'aaronminaya0',
+      password: 'Pwmf22gu.'
     },
   },
 
