@@ -8,6 +8,8 @@ router.get('/user/:id', bugController.grabBugsOfUser)
 
 router.post('/', bugController.postBug)
 
+router.patch('/descriptionAndCode', bugController.updateCodeAndDescription)
+
 router.patch('/feedback', bugController.updateFeedback)
 
 router.patch('/status/:id', bugController.updateBugStatus)
