@@ -27,25 +27,32 @@
 
     <div id="new-form-background"></div>
 
-     <div id="individual-tasks">
-            <p id="close-individual-task-form" class="cursor-pointer">x</p>
-            <form id="individual-task">
-                <p id="form-text">ISSUE TITLE</p>
-                <p id="form-description">description</p>
-                <p>Code:</p>
-                <br>
-                <code style='background:white'> i like dogs </code>
-                <br>
-                <p>Comment:</p>
-                <br>
-                <textarea maxlength="600" form="individual-task-form" id="individual-task-description"></textarea>
-                <br>
-                <p>Code feedback:</p>
-                <textarea maxlength="600" form="individual-task-form" id="individual-task-code"></textarea>
-                <br>
-                <input type="submit">
-            </form>
-        </div>
+    <div id="individual-tasks">
+        <p id="close-individual-task-form" class="cursor-pointer">x</p>
+        <form id="individual-task">
+            <p id="form-text">ISSUE TITLE</p>
+            <p id="form-description">description</p>
+            <p>Code:</p>
+            <br>
+            <code style='background:white'> i like dogs </code>
+            <br>
+            <p>Comment:</p>
+            <br>
+            <textarea maxlength="600" form="individual-task-form" id="individual-task-description"></textarea>
+            <br>
+            <p>Code feedback:</p>
+            <textarea maxlength="600" form="individual-task-form" id="individual-task-code"></textarea>
+            <br>
+            <label for="bug-status-update">Set status:</label>
+            <select id="bug-status-update" name="bug-status-update">
+                <option value="todo">todo</option>
+                <option value="review">review</option>
+                <option value="completed">completed</option>
+            </select>
+            <br>
+            <input type="submit">
+        </form>
+    </div>
 
     <div id="main">
 

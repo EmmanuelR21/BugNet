@@ -17,7 +17,11 @@ const postBugTitle = document.querySelector('#new-task-title')
 const postBugDesc = document.querySelector('#new-task-description')
 const postBugCode = document.querySelector('#new-task-code')
 const postBugBtn = document.querySelector('#new-task-button')
+const bugStatusUpdate = document.querySelector("bug-status-update")
 
+let updateTaskForm = document.getElementById("individual-task")
+let statusLevle = document.getElementById("bug-status-update")
+let currentBugId;
 if (logedin === "false") {
     location.replace("../../index.html")
 }
@@ -44,31 +48,49 @@ closeIndividualTask.addEventListener("click", () => {
     individualTasks.style.display = "none"
     newTaskFormBackground.style.display = "none"
 })
+updateTaskForm.addEventListener("submit", (e) => {
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    let raw = JSON.stringify({
+        "status": statusLevle.value
+    });
+
+    let requestOptions = {
+        method: 'PATCH',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch(`http://localhost:5432/bugs/status/${currentBugId}`, requestOptions)
+        .then(response => response.text())
+    
+ })
 
 postBugBtn.addEventListener("click", (e) => {
     e.preventDefault()
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-    var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
+    let raw = JSON.stringify({
+        "user_id": localStorage.userid,
+        "title": postBugTitle.value,
+        "description": postBugDesc.value,
+        "code": postBugCode.value
+    });
+    
+    let requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
 
-var raw = JSON.stringify({
-  "user_id": localStorage.userid,
-  "title": postBugTitle.value,
-  "description": postBugDesc.value,
-  "code": postBugCode.value
-});
-
-var requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
-};
-
-fetch(`http://localhost:5432/bugs/${localStorage.currentProjectid}`, requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+    fetch(`http://localhost:5432/bugs/${localStorage.currentProjectid}`, requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
 
 })
 
@@ -84,6 +106,8 @@ async function pullBugs() {
             formDescription.innerText = bugs.description
             newTaskFormBackground.style.display = "block"
             individualTasks.style.display = "block"
+            currentBugId = bugs.bug_id;
+            statusLevle.value = bugs.status;
         })
         switch (bugs.status) {
             case 'review':
