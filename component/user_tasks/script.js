@@ -75,7 +75,7 @@ updateBug.addEventListener('click', async (e) => {
 })
 
 async function getAllUserTasks() {
-    let userTasks = await fetch(`http://localhost:5432/bugs/user/${localStorage.getItem("userid")}`).then(response => response.json())
+    let userTasks = await fetch(`https://mysterious-cliffs-67080.herokuapp.com/bugs/user/${localStorage.getItem("userid")}`).then(response => response.json())
     console.log(userTasks)
     for (task of userTasks) {
         let taskDiv = document.createElement("div");
