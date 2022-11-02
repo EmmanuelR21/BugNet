@@ -53,7 +53,7 @@ logInForm.addEventListener("submit", (e) => {
     }
     console.log(logInForm[0].value, logInForm[1].value)
     
-    fetch(`https://evening-plains-57425.herokuapp.com/users/${logInForm[0].value}/${logInForm[1].value}`)
+    fetch(`https://mysterious-cliffs-67080.herokuapp.com/users/${logInForm[0].value}/${logInForm[1].value}`)
         .then(response => response.json())
         .then(result => {
             if (result.alert === "invalid log in") {
@@ -95,7 +95,7 @@ async function createAccount(newAccountName, newUserPassword, confirmNewUserPass
         return false;
     }
     let wasNameTaken = false
-    let allUsersNames = await fetch("https://evening-plains-57425.herokuapp.com/users/users")
+    let allUsersNames = await fetch("https://mysterious-cliffs-67080.herokuapp.com/users/users")
         .then(response => response.json())
         .then(result => result)
     console.log(allUsersNames)
@@ -121,7 +121,7 @@ async function createAccount(newAccountName, newUserPassword, confirmNewUserPass
         redirect: 'follow'
     };
 
-    let userData = await fetch("https://evening-plains-57425.herokuapp.com/users/new_user", requestOptions)
+    let userData = await fetch("https://mysterious-cliffs-67080.herokuapp.com/users/new_user", requestOptions)
         .then(response => response.json())
         .then(result => result[0])
     console.log(userData)
