@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const usersController = require('../controllers/usersController.js')
 
-router.get("/users", usersController.grabAllUsernames)
+router.get("/heroku addons:create heroku-postgresql:hobby-dev", usersController.grabAllUsernames)
 
 router.get("/:name/:password", usersController.loginAuthentication)
 
