@@ -68,7 +68,7 @@ updateBug.addEventListener('click', async (e) => {
         redirect: 'follow'
     };
 
-    await fetch("https://localhost:5432/bugs/descriptionAndCode", requestOptions)
+    await fetch("https://mysterious-cliffs-67080.herokuapp.com/bugs/descriptionAndCode", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
