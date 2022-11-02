@@ -66,7 +66,7 @@ updateTaskForm.addEventListener("submit", async (e) => {
         redirect: 'follow'
     };
 
-    let newBugData = fetch(`http://localhost:5432/bugs/status/${currentBugId}`, requestOptionss)
+    let newBugData = fetch(`https://mysterious-cliffs-67080.herokuapp.com/bugs/status/${currentBugId}`, requestOptionss)
         .then(response => response.json())
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -84,7 +84,7 @@ updateTaskForm.addEventListener("submit", async (e) => {
         redirect: 'follow'
     };
 
-    fetch(`http://localhost:5432/bugs/feedback/${currentBugId}`, requestOptions)
+    fetch(`https://mysterious-cliffs-67080.herokuapp.com/bugs/feedback/${currentBugId}`, requestOptions)
         .then(response => response.json())
         .then(result => result)
     location.replace("../bugs_page/bugs.html")
@@ -109,7 +109,7 @@ postBugBtn.addEventListener("click", async (e) => {
         redirect: 'follow'
     };
 
-    let newBugData = await fetch(`http://localhost:5432/bugs/${localStorage.currentProjectid}`, requestOptions)
+    let newBugData = await fetch(`https://mysterious-cliffs-67080.herokuapp.com/bugs/${localStorage.currentProjectid}`, requestOptions)
         .then(response => response.json())
         .then(result => result[0])
     newTaskFormHolder.style.display = "none"
@@ -130,7 +130,7 @@ postBugBtn.addEventListener("click", async (e) => {
 
 // Functions
 async function pullBugs() {
-    const response = await fetch(`http://localhost:5432/bugs/${localStorage.getItem("currentProjectid")}`)
+    const response = await fetch(`https://mysterious-cliffs-67080.herokuapp.com/bugs/${localStorage.getItem("currentProjectid")}`)
     const json = await response.json()
     for (const bugs of json) {
         const div = document.createElement('div')
