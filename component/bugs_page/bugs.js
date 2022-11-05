@@ -66,7 +66,7 @@ updateTaskForm.addEventListener("submit", async (e) => {
         redirect: 'follow'
     };
 
-    let newBugData = fetch(`https://mysterious-cliffs-67080.herokuapp.com/bugs/status/${currentBugId}`, requestOptionss)
+    let newBugData = await fetch(`https://mysterious-cliffs-67080.herokuapp.com/bugs/status/${currentBugId}`, requestOptionss)
         .then(response => response.json())
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -84,7 +84,7 @@ updateTaskForm.addEventListener("submit", async (e) => {
         redirect: 'follow'
     };
 
-    fetch(`https://mysterious-cliffs-67080.herokuapp.com/bugs/feedback/${currentBugId}`, requestOptions)
+    await fetch(`https://mysterious-cliffs-67080.herokuapp.com/bugs/feedback/${currentBugId}`, requestOptions)
         .then(response => response.json())
         .then(result => result)
     location.replace("../bugs_page/bugs.html")
